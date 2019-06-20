@@ -19,6 +19,15 @@ public class User {
 		this.urlImageProfile = urlImageProfile;
 		this.birthday = birthday;
 	}
+	
+	public User(String name, String surname, String email, String urlImageProfile,
+			GregorianCalendar birthday) {
+		this.name = name;
+		this.surname = surname;
+		this.email = email;
+		this.urlImageProfile = urlImageProfile;
+		this.birthday = birthday;
+	}
 
 	public String getName() {
 		return name;
