@@ -6,19 +6,9 @@ public class User {
 	private String name;
 	private String surname;
 	private String email;
-	private String password;
 	private String urlImageProfile;
 	private GregorianCalendar birthday;
 
-	public User(String name, String surname, String email, String password, String urlImageProfile,
-			GregorianCalendar birthday) {
-		this.name = name;
-		this.surname = surname;
-		this.email = email;
-		this.password = password;
-		this.urlImageProfile = urlImageProfile;
-		this.birthday = birthday;
-	}
 
 	public User(String name, String surname, String email, String urlImageProfile, GregorianCalendar birthday) {
 		this.name = name;
@@ -40,10 +30,6 @@ public class User {
 		return email;
 	}
 
-	public String getPassword() {
-		return password;
-	}
-
 	public String getUrlImageProfile() {
 		return urlImageProfile;
 	}
@@ -53,7 +39,7 @@ public class User {
 	}
 
 	public String toString() {
-		return "User: " + name + "  " + surname + "\n" + "Email: " + email + "\n" + "Password: " + password + "\n"
+		return "User: " + name + "  " + surname + "\n" + "Email: " + email + "\n" 
 				+ "Profile Image: " + urlImageProfile + "\n" + "Date of Birth: " + birthday;
 	}
 
