@@ -6,8 +6,15 @@ public abstract class PostedMessage {
 
 	private String text;
 	private String userEmail;
-	private GregorianCalendar postedTime;
+	private GregorianCalendar postTime;
 	private int id;
+
+	public PostedMessage(String text, String userEmail, GregorianCalendar postTime, int id) {
+		this.text = text;
+		this.userEmail = userEmail;
+		this.postTime = postTime;
+		this.id = id;
+	}
 
 	public String getText() {
 		return text;
@@ -17,19 +24,12 @@ public abstract class PostedMessage {
 		return userEmail;
 	}
 
-	public GregorianCalendar getPostedTime() {
-		return postedTime;
+	public GregorianCalendar getPostTime() {
+		return postTime;
 	}
 
 	public int getId() {
 		return id;
-	}
-
-	public PostedMessage(String text, String userEmail, GregorianCalendar postedTime, int id) {
-		this.text = text;
-		this.userEmail = userEmail;
-		this.postedTime = postedTime;
-		this.id = id;
 	}
 
 }
