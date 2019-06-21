@@ -21,9 +21,9 @@
 			<div class="col-lg-6 col-md-6 col-sm-6">
 	 			<h1>Login</h1>
 	 			
-	 			<c:if test="${not empty Error}">
+	 			<c:if test="${not empty error}">
 	 				<div  class="alert alert-danger" role="alert">
-	 					${Error}
+	 					${error}
 	 				</div>
 	 			</c:if>
 	 			

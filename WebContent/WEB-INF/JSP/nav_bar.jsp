@@ -18,7 +18,7 @@
 		<c:when test="${pageType=='HOME'}">
 				<a class="navlink">Home</a>
 		</c:when>
-		<c:otherwise><a class="navlink">Home</a></c:otherwise>
+		<c:otherwise><a  class="navlink">Home</a></c:otherwise>
 	</c:choose>
 	<c:choose>
 		<c:when test="${logged==true}">
@@ -26,15 +26,17 @@
 				<c:when test="${pageType=='MYPROFILE'}">
 					<a class="navlink">My Profile</a>
 				</c:when>
-				<c:otherwise><a class="navlink">My Profile</a></c:otherwise>
+				<c:otherwise><a  class="navlink">My Profile</a></c:otherwise>
 			</c:choose>
 		</c:when>
 			<c:when test="${logged==false}">
 			<c:choose>
 				<c:when test="${pageType=='MYPROFILE'}">
-					<a class="navlink">Sign Up</a>
+										<a href="usermanager.html" class="">Sign Up</a>
+
 				</c:when>
-				<c:otherwise><a class="navlink">Sign Up</a></c:otherwise>
+								<c:otherwise><a href="usermanager.html">Sign Up</a></c:otherwise>
+
 			</c:choose>
 		</c:when>
 		</c:choose>

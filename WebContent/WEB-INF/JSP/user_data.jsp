@@ -23,19 +23,19 @@
 				<form action="index.html" method="post">
 				
 				  	<label for="name">Name</label>
-				  	<input type="text" id="name" name="name"/> 
-				  	<label for="surname">Surname</label>
-				  	<input type="text" id="surname" name="surname"/>
-				  	<label for="email">email</label>
-				  	<input type="text" id="email" name="email"/> 
+				  	<input type="text" id="name" name="name" <c:if test= "${not empty user}">value="${user.name}"</c:if>/>
+				    <label for="surname">Surname</label>
+			  		<input type="text" id="surname" name="surname" <c:if test= "${not empty user}">value="${user.surname}"</c:if>/> 
+			  		<label for="email">email</label>
+				  	<input type="text" id="email" name="email" <c:if test= "${not empty user}">value="${user.email}"</c:if>/> 
 				  	<label for="password">password</label>
-				  	<input type="password" id="password" name="password"/>
+				  	<input type="password" id="password" name="password" />
 				  	<label for="urlImageProfile">URL Image Profile</label>
-					<input type="text" id="urlImageProfile" name="urlImageProfile"/>
+					<input type="text" id="urlImageProfile" name="urlImageProfile" <c:if test= "${not empty user}">value="${user.urlImageProfile}"</c:if>/> 
 				  	<label for="birthday">Birthday</label>
-				  	<input type="text" id="birthday" name="birthday"/>
-				  	
-					<button type="submit">Modify</button>
+				  	<input type="text" id="birthday" name="birthday" <c:if test= "${not empty user}">value="${user.birthday}"</c:if>/> 
+					 	
+					<button type="submit"><c:choose><c:when test="${not empty user}">Modify</c:when><c:otherwise>Register</c:otherwise></c:choose></button>
 				
 	 			</form>
 	 		

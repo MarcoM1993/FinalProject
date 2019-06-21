@@ -69,7 +69,7 @@ public class Login extends HttpServlet {
 
 		} else {
 
-			request.setAttribute("Error", "Wrong credentials");
+			request.setAttribute("error", "Wrong credentials");
 			request.setAttribute("logged", false);
 			request.getRequestDispatcher("WEB-INF/JSP/login.jsp").forward(request, response);
 		}
