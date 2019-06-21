@@ -22,21 +22,21 @@
 	 			
 				<form action="index.html" method="post">
 				
-			  	<label for="name">Name</label>
-			  	<input type="text" id="name" name="name"/> 
-			  	<label for="surname">Surname</label>
-			  	<input type="text" id="surname" name="surname"/>
-			  	<label for="email">email</label>
-			  	<input type="text" id="email" name="email"/> 
-			  	<label for="password">password</label>
-			  	<input type="password" id="password" name="password"/>
-			  	<label for="urlImageProfile">URL Image Profile</label>
-				<input type="text" id="urlImageProfile" name="urlImageProfile"/>
-			  	<label for="birthday">Birthday</label>
-			  	<input type="text" id="birthday" name="birthday"/>
-			  	
-				<button type="submit">Modify</button>
-			
+				  	<label for="name">Name</label>
+				  	<input type="text" id="name" name="name"/> 
+				  	<label for="surname">Surname</label>
+				  	<input type="text" id="surname" name="surname"/>
+				  	<label for="email">email</label>
+				  	<input type="text" id="email" name="email"/> 
+				  	<label for="password">password</label>
+				  	<input type="password" id="password" name="password"/>
+				  	<label for="urlImageProfile">URL Image Profile</label>
+					<input type="text" id="urlImageProfile" name="urlImageProfile"/>
+				  	<label for="birthday">Birthday</label>
+				  	<input type="text" id="birthday" name="birthday"/>
+				  	
+					<button type="submit">Modify</button>
+				
 	 			</form>
 	 		
 			</div>
