@@ -27,9 +27,9 @@
 			<c:when test="${logged==false}">
 			<c:choose>
 				<c:when test="${pageType=='MYPROFILE'}">
-					<a class="">Sign Up</a>
+					<a href="usermanager.html" class="">Sign Up</a>
 				</c:when>
-				<c:otherwise><a>Sign Up</a></c:otherwise>
+				<c:otherwise><a href="usermanager.html">Sign Up</a></c:otherwise>
 			</c:choose>
 		</c:when>
 		</c:choose>
