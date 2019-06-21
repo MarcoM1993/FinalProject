@@ -27,9 +27,9 @@
 	 			</c:if>
 	 			
 				<form action="index.html" method="post">
-			  	<label for="email">email</label>
+			  	<label for="email">Email</label>
 			  	<input type="text" id="email" name="email"/> 
-			  	<label for="password">password</label>
+			  	<label for="password">Password</label>
 			  	<input type="password" id="password" name="password"/>
 				<button type="submit">Sign In</button>
 			
