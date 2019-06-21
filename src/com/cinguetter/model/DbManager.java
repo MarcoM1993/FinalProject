@@ -9,7 +9,7 @@ public class DbManager {
 	private static DbManager singleton;
 	private static final String URL_DB = "jdbc:oracle:thin:@localhost:1521:xe";
 	private static final String USER = "SYSTEM";
-	private static final String PASSWORD = "crusaders";
+	private static final String PASSWORD = "admin";
 
 	private DbManager() {
 		try {
@@ -26,7 +26,7 @@ public class DbManager {
 			return conn;
 		} catch (SQLException e) {
 			e.printStackTrace();
-			System.out.println("Errore in getDbConnection");
+			System.out.println("Errore in getDbConnection, VERIFICA LA PASSWORD IN DBMANAGER PRIMA DI ENTRARE IN PANICO");
 		}
 		return null;
 	}
