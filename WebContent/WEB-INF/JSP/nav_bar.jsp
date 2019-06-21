@@ -34,10 +34,10 @@
 		</c:when>
 		</c:choose>
 	<c:choose>
-		<c:when test="${logged==true}">
+		<c:when test="${logged==false}">
 				<a><button class="">Login</button></a>
 		</c:when>
-		<c:when test="${logged==false}">
+		<c:when test="${logged==true}">
 				<a><button class="">Logout</button></a>
 		</c:when>	
 	</c:choose>

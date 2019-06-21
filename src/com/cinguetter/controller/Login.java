@@ -32,16 +32,17 @@ public class Login extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
-		if (session != null) {
+		/*if (session != null) {
 			if ((boolean) session.getAttribute("logout")) {
 				session.invalidate();
 				request.getRequestDispatcher("WEB-INF/JSP/login.jsp").forward(request, response);
 			} else {
 				response.sendRedirect("home.html");
 			}
-		} else {
+		} else {*/
+			request.setAttribute("logged", false);
 			request.getRequestDispatcher("WEB-INF/JSP/login.jsp").forward(request, response);
-		}
+		//}
 	}
 
 	/**
