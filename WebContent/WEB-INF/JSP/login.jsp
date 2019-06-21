@@ -19,9 +19,13 @@
 			
 			<div class="col-lg-6 col-md-6 col-sm-6">
 	 			<h1>Login</h1>
-	 			<div  class="alert alert-danger" role="alert">
-	 				${Error}
-	 			</div>
+	 			
+	 			<c:if test="${not empty Error}">
+	 				<div  class="alert alert-danger" role="alert">
+	 					${Error}
+	 				</div>
+	 			</c:if>
+	 			
 				<form action="index.html" method="post">
 			  	<label for="email">email</label>
 			  	<input type="text" id="email" name="email"/> 
