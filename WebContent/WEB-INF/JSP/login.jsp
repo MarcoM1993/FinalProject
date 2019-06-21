@@ -34,7 +34,7 @@
 				<button type="submit">Sign In</button>
 			
 	 			</form>
-	 		 	<a href="../usermanager.html">
+	 		 	<a href="usermanager.html">
 	 				<button>Sign Up</button>
 	 			</a>
 			</div>

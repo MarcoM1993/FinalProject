@@ -32,6 +32,7 @@ public class Login extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
+		
 		/*if (session != null) {
 			if ((boolean) session.getAttribute("logout")) {
 				session.invalidate();
@@ -40,6 +41,7 @@ public class Login extends HttpServlet {
 				response.sendRedirect("home.html");
 			}
 		} else {*/
+		
 			request.setAttribute("logged", false);
 			request.getRequestDispatcher("WEB-INF/JSP/login.jsp").forward(request, response);
 		//}
@@ -62,10 +64,11 @@ public class Login extends HttpServlet {
 			response.sendRedirect("home.html");
 
 		} else {
+
 			request.setAttribute("Error", "Wrong credentials");
 			request.setAttribute("logged", false);
 			request.getRequestDispatcher("WEB-INF/JSP/login.jsp").forward(request, response);
-
+			request.getSession(false).invalidate();
 		}
 
 	}
