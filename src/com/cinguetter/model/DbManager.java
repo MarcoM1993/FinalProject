@@ -26,7 +26,7 @@ public class DbManager {
 			return conn;
 		} catch (SQLException e) {
 			e.printStackTrace();
-			System.out.println("Errore in getDbConnection, VERIFICA LA PASSWORD IN DBMANAGER PRIMA DI ENTRARE IN PANICO");
+			System.out.println("Errore in getDbConnection, VERIFICA LA PASSWORD IN DBMANAGER PRIMA DI ENTRARE IN PANICO oppure mi stai passando dati di utente con valore null");
 		}
 		return null;
 	}
