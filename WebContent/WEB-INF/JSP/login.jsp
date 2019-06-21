@@ -11,7 +11,7 @@
 	<title>Cinguetter - Login</title>
 </head>
 <body>
-		
+		<jsp:include page="nav_bar.jsp"></jsp:include>
 		<div class="row col-lg-12 col-md-12 col-sm-12">
 			
 			<div class="col-lg-3 col-md-3 col-sm-3">
