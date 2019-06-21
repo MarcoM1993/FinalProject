@@ -15,8 +15,8 @@ public class DbManager {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 		} catch (ClassNotFoundException e) {
-
 			e.printStackTrace();
+			System.out.println("Errore nel costruttore di DbManger");
 		}
 	}
 
@@ -25,8 +25,8 @@ public class DbManager {
 			Connection conn = DriverManager.getConnection(URL_DB, USER, PASSWORD);
 			return conn;
 		} catch (SQLException e) {
-
 			e.printStackTrace();
+			System.out.println("Errore in getDbConnection");
 		}
 		return null;
 	}
