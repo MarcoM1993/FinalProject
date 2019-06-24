@@ -42,8 +42,6 @@ public class Login extends HttpServlet {
 				response.sendRedirect("home.html");
 			}
 		} else {*/
-		
-			request.setAttribute("logged", false);
 			request.getRequestDispatcher("WEB-INF/JSP/login.jsp").forward(request, response);
 		//}
 	}

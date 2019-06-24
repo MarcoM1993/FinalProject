@@ -11,6 +11,19 @@
 	<title>Cinguetter - UserManager</title>
 </head>
 <body>
+				<%-- Imposto le variabili che servono alla navbar per essere visualizzata nel modo corretto --%>
+		<c:set var="pageType" scope="request" value="userData"/> <%-- Se sto generando questo jsp sono per forza nella pagina userData --%>
+		<%-- Se sto richiamando questa jsp non sono per forza loggato e quindi devo verificarlo --%>
+		<c:choose>
+			<c:when test= "${not empty user}"> 
+				<c:set var="logged" scope="request" value=true/><%-- Se esiste un utente imposto la variabile logged a true --%>
+			</c:when>
+			<c:otherwise>
+				<c:set var="logged" scope="request" value=false/><%-- Se non esiste un utente imposto la variabile logged a false --%>
+			</c:otherwise>
+		</c:choose>
+				
+		
 		<jsp:include page="nav_bar.jsp"></jsp:include>
 		<div class="row col-lg-12 col-md-12 col-sm-12">
 			
