@@ -88,14 +88,7 @@ public class UserFactory {
 				String name = result.getString("name");
 				String surname = result.getString("surname");
 				String urlImageProfile = result.getString("urlImageProfile");
-			    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-mm-dd");
-				GregorianCalendar birthday = (GregorianCalendar) Calendar.getInstance();
-				try {
-					birthday.setTime(formatter.parse(result.getString("birthday")));
-				} catch (ParseException e) {
-					e.printStackTrace();
-					System.out.println("La mamma egua del formatter sta facendo cose sbagliate");
-				}
+				GregorianCalendar birthday = userBirthdayManager(result.getString("birthday"));
 				User user = new User(name, surname, email, urlImageProfile, birthday);
 				return user;
 			}
@@ -107,6 +100,19 @@ public class UserFactory {
 		}
 		return null; 
 
+	}
+	
+	public GregorianCalendar userBirthdayManager(String birthdayString) {
+	    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-mm-dd");
+	    GregorianCalendar birthday= (GregorianCalendar) Calendar.getInstance();
+		try {
+			birthday.setTime(formatter.parse(birthdayString));
+			return birthday;
+		} catch (ParseException e) {
+			e.printStackTrace();
+			System.out.println("La mamma egua del formatter sta facendo cose sbagliate, errore in userBithdayManager");
+		}
+		return null;
 	}
 
 	public boolean addUser(String name, String surname, String email, String password, String urlImageProfile, GregorianCalendar birthday) {
