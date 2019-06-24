@@ -26,9 +26,9 @@
 				  	<input type="text" id="name" name="name" <c:if test= "${not empty user}">value="${user.name}"</c:if>/>
 				    <label for="surname">Surname</label>
 			  		<input type="text" id="surname" name="surname" <c:if test= "${not empty user}">value="${user.surname}"</c:if>/> 
-			  		<label for="email">email</label>
+			  		<label for="email">Email</label>
 				  	<input type="text" id="email" name="email" <c:if test= "${not empty user}">value="${user.email}"</c:if>/> 
-				  	<label for="password">password</label>
+				  	<label for="password">Password</label>
 				  	<input type="password" id="password" name="password" />
 				  	<label for="urlImageProfile">URL Image Profile</label>
 					<input type="text" id="urlImageProfile" name="urlImageProfile" <c:if test= "${not empty user}">value="${user.urlImageProfile}"</c:if>/> 
