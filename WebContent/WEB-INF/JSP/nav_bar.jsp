@@ -7,40 +7,48 @@
 	<title></title>
 </head>
 <body>
-	<nav>
+	<nav class="row">
+	<div>
+		<img id="logo" src="view/Resources/logo.png" width="40" alt="logo Cinguetter" title="logoCinguetter">
+		<h4 id="title"> Cinguetter</h4>
+		</div>
+	<div>
 	<%--INSERIRE IL LOGO A SINISTRA DELLA NAVBAR --%>
 	<c:choose>
 		<c:when test="${pageType=='HOME'}">
-				<a class="">Home</a>
+				<a class="navlink">Home</a>
 		</c:when>
-		<c:otherwise><a>Home</a></c:otherwise>
+		<c:otherwise><a  class="navlink">Home</a></c:otherwise>
 	</c:choose>
 	<c:choose>
 		<c:when test="${logged==true}">
 			<c:choose>
 				<c:when test="${pageType=='MYPROFILE'}">
-					<a class="">My Profile</a>
+					<a class="navlink">My Profile</a>
 				</c:when>
-				<c:otherwise><a>My Profile</a></c:otherwise>
+				<c:otherwise><a  class="navlink">My Profile</a></c:otherwise>
 			</c:choose>
 		</c:when>
 			<c:when test="${logged==false}">
 			<c:choose>
 				<c:when test="${pageType=='MYPROFILE'}">
-					<a class="">Sign Up</a>
+										<a href="usermanager.html" class="">Sign Up</a>
+
 				</c:when>
-				<c:otherwise><a>Sign Up</a></c:otherwise>
+								<c:otherwise><a href="usermanager.html">Sign Up</a></c:otherwise>
+
 			</c:choose>
 		</c:when>
 		</c:choose>
 	<c:choose>
 		<c:when test="${logged==false}">
-				<a href="index.html"><button class="">Login</button></a>
+				<a href="index.html" class="navlink"><button class="">Login</button></a>
 		</c:when>
 		<c:when test="${logged==true}">
-				<a href="index.html"><button class="">Logout</button></a>
+				<a href="index.html" class="navlink"><button class="">Logout</button></a>
 		</c:when>	
 	</c:choose>
+	</div>
 	</nav>
 </body>
 </html>
