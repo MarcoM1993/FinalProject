@@ -40,7 +40,7 @@
 				    <label for="surname">Surname</label>
 			  		<input type="text" id="surname" name="surname" <c:if test= "${not empty user}">value="${user.surname}"</c:if>/> 
 			  		<label for="email">Email</label>
-				  	<input type="text" id="email" name="email" <c:if test= "${not empty user}">value="${user.email}"</c:if>/> 
+				  	<input type="email" id="email" name="email" <c:if test= "${not empty user}">value="${user.email}"</c:if>/> 
 				  	<label for="password">Password</label>
 				  	<input type="password" id="password" name="password" />
 				  	<label for="urlImageProfile">URL Image Profile</label>
