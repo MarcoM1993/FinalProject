@@ -36,12 +36,8 @@ constraint fk_comments_users_email foreign key (user_email) references users(ema
 );
 
 
-insert into users values('Marco', 'Micheli','marco@gmail.com', 'password','default.jpg',to_date('16-06-1993', 'dd-mm-yyyy'));
-insert into users values('Alessandro', 'Ortu','alessandro@gmail.com', 'password','default.jpg',to_date('27-11-1992', 'dd-mm-yyyy'));
-insert into users values('Mara', 'Medda','mara@gmail.com', 'password','default.jpg',to_date('25-10-1993', 'dd-mm-yyyy'));
-insert into users values('Davide', 'Scintu','davide@gmail.com', 'password','default.jpg',to_date('12-01-1995', 'dd-mm-yyyy'));
-insert into users values('Federico', 'Spiga','federico@gmail.com', 'password','default.jpg',to_date('10-01-1995', 'dd-mm-yyyy'));
-insert into users values('Samuele', 'Virdis','samucarogna@agmail.com', 'password','default.jpg',to_date('05-10-1994', 'dd-mm-yyyy'));
-
-
-select * from users;
+insert into users values('Marco', 'Micheli','marco@gmail.com', 'password','default.jpg',to_date('1993-06-16', 'yyyy-mm-dd'));
+insert into users values('Alessandro', 'Ortu','alessandro@gmail.com', 'password','default.jpg',to_date('1992-11-27', 'yyyy-mm-dd'));
+insert into users values('Mara', 'Medda','mara@gmail.com', 'password','default.jpg',to_date('1993-10-25', 'yyyy-mm-dd'));
+insert into users values('Davide', 'Scintu','davide@gmail.com', 'password','default.jpg',to_date('1995-01-12', 'yyyy-mm-dd'));
+insert into users values('Federico', 'Spiga','federico@gmail.com', 'password','default.jpg',to_date('1995-01-10', 'yyyy-mm-dd'));

@@ -33,7 +33,7 @@
 			<div class="col-lg-6 col-md-6 col-sm-6">
 	 			<h1>My Profile</h1>
 	 			
-				<form action="index.html" method="post">
+				<form action="usermanager.html" method="post">
 				
 				  	<label for="name">Name</label>
 				  	<input type="text" id="name" name="name" <c:if test= "${not empty user}">value="${user.name}"</c:if>/>
@@ -46,8 +46,8 @@
 				  	<label for="urlImageProfile">URL Image Profile</label>
 					<input type="text" id="urlImageProfile" name="urlImageProfile" <c:if test= "${not empty user}">value="${user.urlImageProfile}"</c:if>/> 
 				  	<label for="birthday">Birthday</label>
-				  	<input type="text" id="birthday" name="birthday" <c:if test= "${not empty user}">value="${user.birthday}"</c:if>/> 
-					 	
+				  	<input type="date" id="birthday" name="birthday" <c:if test= "${not empty user}">value="${user.birthday}"</c:if>/> 
+
 					<button type="submit"><c:choose><c:when test="${not empty user}">Modify</c:when><c:otherwise>Register</c:otherwise></c:choose></button>
 				
 	 			</form>
