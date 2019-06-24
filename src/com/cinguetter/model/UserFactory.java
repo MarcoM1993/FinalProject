@@ -115,20 +115,20 @@ public class UserFactory {
 		return null;
 	}
 
-	public boolean addUser(String name, String surname, String email, String password, String urlImageProfile, GregorianCalendar birthday) {
+	public boolean addUser(int id, String name, String surname, String email, String password, String urlImageProfile, String birthday) {
 
-		if(UserFactory.getInstance().getUser(email) == null) {   // se l'Utente non c'è lo aggiungo, altrimenti return false;
-			String sql = " insert into users values (?, ?, ?, ?, ?, ?) ";
+		if(getUser(email) == null) {   // se l'Utente non c'è lo aggiungo, altrimenti return false;
+			String sql = " insert into users values (?, ?, ? , ?, ?, ?, to date (?, 'yyyy-mm-dd') ";
 			try (Connection conn = DbManager.getInstance().getDbConnection();
 					PreparedStatement stmt = conn.prepareStatement(sql)) {
-				stmt.setString(1, name);
-				stmt.setString(2, surname);
-				stmt.setString(3, email);
-				stmt.setString(4, password);
-				stmt.setString(5, urlImageProfile);
-//				stmt.setString(6, birthday);
-				
-//				ResultSet result = stmt.executeUpdate(sql);
+				stmt.setInt(1, id);
+				stmt.setString(2, name);
+				stmt.setString(3, surname);
+				stmt.setString(4, email);
+				stmt.setString(5, password);
+				stmt.setString(6, urlImageProfile);
+				stmt.setString(7, birthday);
+				stmt.executeUpdate();
 				return true;
 			} catch(SQLException e) {
 				Logger.getLogger(UserFactory.class.getName()).log(Level.SEVERE, null, e);
