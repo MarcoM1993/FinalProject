@@ -61,7 +61,7 @@
 					  	</div>
 					    <div>
 					  	<label for="birthday">Birthday</label>
-					  	<input type="date" class="form-control mb-4" id="birthday" name="birthday" <c:if test= "${not empty user}">value="${user.birthday}"</c:if>/> 
+					  	<input type="date" class="form-control mb-4" id="birthday" name="birthday" <c:if test= "${not empty user}">value="${user.birthdayString}"</c:if>/> 
 						</div>
 					
 			 			<c:if test="${not empty error}">

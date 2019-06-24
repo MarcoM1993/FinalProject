@@ -1,5 +1,6 @@
 package com.cinguetter.model;
 
+import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
 
 public class User {
@@ -36,6 +37,14 @@ public class User {
 
 	public GregorianCalendar getBirthday() {
 		return birthday;
+	}
+	
+	public String getBirthdayString() {
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-mm-dd");
+		formatter.setCalendar(birthday);
+		System.out.println(formatter.format(birthday.getTime()));
+		return formatter.format(birthday.getTime());
+		
 	}
 
 	public String toString() {
