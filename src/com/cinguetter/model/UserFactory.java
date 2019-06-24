@@ -55,25 +55,38 @@ public class UserFactory {
 
 	public boolean editDetails(String newName, String newSurname, String newEmail, String newUrlImageProfile,
 			String newPassword, String email) {
-		if (UserFactory.getInstance().getUser(email) != null) { // se esiste l'Utente, lo modifico, altrimenti return
-																// false;
-			String sql = " delete from users where email = ? ";
-			try (Connection conn = DbManager.getInstance().getDbConnection();
-					PreparedStatement stmt = conn.prepareStatement(sql)) {
-				stmt.setString(1, newName);
-				stmt.setString(2, newSurname);
-				stmt.setString(3, email);
-				stmt.setString(4, newPassword);
-				stmt.setString(5, newUrlImageProfile);
-//				stmt.setString(6, birthday);
-//				
-//				ResultSet result = stmt.executeUpdate(sql);
-				return true;
-			} catch (SQLException e) {
-				Logger.getLogger(UserFactory.class.getName()).log(Level.SEVERE, null, e);
-				System.out.println("Errore in addUser");
+
+		int idUser = 0;
+		String sqlGetId = "select id from users where email = ? ";
+		try (Connection conn = DbManager.getInstance().getDbConnection();
+				PreparedStatement stmt = conn.prepareStatement(sqlGetId)) {
+			stmt.setString(1, email);
+			ResultSet result = stmt.executeQuery();
+			if (result.next()) {
+				idUser = result.getInt("id");
+
 			}
 
+		} catch (SQLException e) {
+			Logger.getLogger(UserFactory.class.getName()).log(Level.SEVERE, null, e);
+			System.out.println("Errore in addUser");
+		}
+
+		String sqlEditUserDetails = " update users set name = ?, surname= ?, email=?, password=?, urlimageprofile=?, birthday=? where id = ? ";
+		try (Connection conn = DbManager.getInstance().getDbConnection();
+				PreparedStatement stmt = conn.prepareStatement(sqlEditUserDetails)) {
+			stmt.setString(1, newName);
+			stmt.setString(2, newSurname);
+			stmt.setString(3, newEmail);
+			stmt.setString(4, newUrlImageProfile);
+			stmt.setString(5, newPassword);
+			stmt.setInt(6, idUser);
+			stmt.executeUpdate();
+
+			return true;
+		} catch (SQLException e) {
+			Logger.getLogger(UserFactory.class.getName()).log(Level.SEVERE, null, e);
+			System.out.println("Errore in addUser");
 		}
 		return false;
 	}
@@ -127,7 +140,7 @@ public class UserFactory {
 			try (Connection conn = DbManager.getInstance().getDbConnection(); Statement stmt = conn.createStatement()) {
 				String sqlMaxId = "select MAX(id) from users";
 				ResultSet result = stmt.executeQuery(sqlMaxId);
-				
+
 				if (result.next()) {
 					idUser = result.getInt("id") + 1;
 				}
