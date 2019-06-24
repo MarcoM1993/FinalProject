@@ -6,31 +6,31 @@ drop table users;
 create table users
 (
 id number(38,0),
-name varchar2(50),
-surname varchar2(50),
-email varchar2(254),
-password varchar2(128),
-urlimageprofile varchar(500),
-birthday date,
+name varchar2(50) NOT NULL,
+surname varchar2(50) NOT NULL,
+email varchar2(254) NOT NULL UNIQUE,
+password varchar2(128) NOT NULL,
+urlimageprofile varchar(500) NOT NULL,
+birthday date NOT NULL,
 constraint pk_users_id primary key(id)
 );
 
 
 create table cinguetts(
 id number(38,0),
-text varchar2(150),
-user_id number(38,0),
-post_time date,
+text varchar2(150) NOT NULL,
+user_id number(38,0) NOT NULL,
+post_time date NOT NULL,
 constraint pk_cinguetts_id primary key(id),
 constraint fk_cinguetts_users_id foreign key(user_id) references users(id)
 );
 
 create table comments(
 id number(38,0),
-text varchar2(150),
-post_time date,
-user_id number(38,0),
-cinguett_id number(38,0),
+text varchar2(150) NOT NULL,
+post_time date NOT NULL,
+user_id number(38,0) NOT NULL,
+cinguett_id number(38,0) NOT NULL,
 constraint pk_comments_id primary key(id),
 constraint fk_comments_cinguetts_id foreign key (cinguett_id) references cinguetts(id),
 constraint fk_comments_users_id foreign key (user_id) references users(id)
