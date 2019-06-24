@@ -52,9 +52,28 @@ public class UserFactory {
 		return false;
 	}
 
-	public boolean editDetails(String newName, String newSurname, String newEmail, String newUrlImageProfile,
+	public boolean editDetails(String newName, String newSurname, String newEmail, String newUrlImageProfile, 
 			String newPassword, String email) {
-		return true;
+		if(UserFactory.getInstance().getUser(email) != null) {  // se esiste l'Utente, lo modifico, altrimenti return false;
+			String sql = " delete from users where email = ? ";
+			try (Connection conn = DbManager.getInstance().getDbConnection();
+					PreparedStatement stmt = conn.prepareStatement(sql)) {
+				stmt.setString(1, newName);
+				stmt.setString(2, newSurname);
+				stmt.setString(3, email);
+				stmt.setString(4, newPassword);
+				stmt.setString(5, newUrlImageProfile);
+//				stmt.setString(6, birthday);
+//				
+//				ResultSet result = stmt.executeUpdate(sql);
+				return true;
+			} catch(SQLException e) {
+				Logger.getLogger(UserFactory.class.getName()).log(Level.SEVERE, null, e);
+				System.out.println("Errore in addUser");
+			}
+			
+		}
+		return false;
 	}
 
 	public User getUser(String email) {
@@ -86,8 +105,32 @@ public class UserFactory {
 			System.out.println("errore in getUser dentro UtenteFactory");
 
 		}
-		return null;
+		return null; 
 
 	}
 
+	public boolean addUser(String name, String surname, String email, String password, String urlImageProfile, GregorianCalendar birthday) {
+
+		if(UserFactory.getInstance().getUser(email) == null) {   // se l'Utente non c'è lo aggiungo, altrimenti return false;
+			String sql = " insert into users values (?, ?, ?, ?, ?, ?) ";
+			try (Connection conn = DbManager.getInstance().getDbConnection();
+					PreparedStatement stmt = conn.prepareStatement(sql)) {
+				stmt.setString(1, name);
+				stmt.setString(2, surname);
+				stmt.setString(3, email);
+				stmt.setString(4, password);
+				stmt.setString(5, urlImageProfile);
+//				stmt.setString(6, birthday);
+				
+//				ResultSet result = stmt.executeUpdate(sql);
+				return true;
+			} catch(SQLException e) {
+				Logger.getLogger(UserFactory.class.getName()).log(Level.SEVERE, null, e);
+				System.out.println("Errore in addUser");
+			}
+		
+		
+		}
+		return false;
+	}
 }
