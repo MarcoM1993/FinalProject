@@ -53,5 +53,9 @@ public class UserFactory {
 			String newPassword, String email) {
 		return true;
 	}
+	
+	public User getUser(String email) {
+		return user;
+	}
 
 }
