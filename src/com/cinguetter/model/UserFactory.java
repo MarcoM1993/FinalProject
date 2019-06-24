@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -52,9 +53,10 @@ public class UserFactory {
 		return false;
 	}
 
-	public boolean editDetails(String newName, String newSurname, String newEmail, String newUrlImageProfile, 
+	public boolean editDetails(String newName, String newSurname, String newEmail, String newUrlImageProfile,
 			String newPassword, String email) {
-		if(UserFactory.getInstance().getUser(email) != null) {  // se esiste l'Utente, lo modifico, altrimenti return false;
+		if (UserFactory.getInstance().getUser(email) != null) { // se esiste l'Utente, lo modifico, altrimenti return
+																// false;
 			String sql = " delete from users where email = ? ";
 			try (Connection conn = DbManager.getInstance().getDbConnection();
 					PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -67,11 +69,11 @@ public class UserFactory {
 //				
 //				ResultSet result = stmt.executeUpdate(sql);
 				return true;
-			} catch(SQLException e) {
+			} catch (SQLException e) {
 				Logger.getLogger(UserFactory.class.getName()).log(Level.SEVERE, null, e);
 				System.out.println("Errore in addUser");
 			}
-			
+
 		}
 		return false;
 	}
@@ -98,13 +100,13 @@ public class UserFactory {
 			System.out.println("errore in getUser dentro UtenteFactory");
 
 		}
-		return null; 
+		return null;
 
 	}
-	
+
 	public GregorianCalendar userBirthdayManager(String birthdayString) {
-	    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-mm-dd");
-	    GregorianCalendar birthday= (GregorianCalendar) Calendar.getInstance();
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-mm-dd");
+		GregorianCalendar birthday = (GregorianCalendar) Calendar.getInstance();
 		try {
 			birthday.setTime(formatter.parse(birthdayString));
 			return birthday;
@@ -115,13 +117,30 @@ public class UserFactory {
 		return null;
 	}
 
-	public boolean addUser(int id, String name, String surname, String email, String password, String urlImageProfile, String birthday) {
+	public boolean addUser(String name, String surname, String email, String password, String urlImageProfile,
+			String birthday) {
 
-		if(getUser(email) == null) {   // se l'Utente non c'è lo aggiungo, altrimenti return false;
-			String sql = " insert into users values (?, ?, ? , ?, ?, ?, to date (?, 'yyyy-mm-dd') ";
+		if (getUser(email) == null) { // se l'Utente non c'è lo aggiungo, altrimenti return false;
+
+			int idUser = 0;
+
+			try (Connection conn = DbManager.getInstance().getDbConnection(); Statement stmt = conn.createStatement()) {
+				String sqlMaxId = "select MAX(id) from users";
+				ResultSet result = stmt.executeQuery(sqlMaxId);
+				
+				if (result.next()) {
+					idUser = result.getInt("id") + 1;
+				}
+
+			} catch (SQLException e) {
+				Logger.getLogger(UserFactory.class.getName()).log(Level.SEVERE, null, e);
+				System.out.println("Errore in addUser nel recuper di maxId");
+			}
+
+			String sqlNewUser = " insert into users values (?, ?, ? , ?, ?, ?, to date (?, 'yyyy-mm-dd') ";
 			try (Connection conn = DbManager.getInstance().getDbConnection();
-					PreparedStatement stmt = conn.prepareStatement(sql)) {
-				stmt.setInt(1, id);
+					PreparedStatement stmt = conn.prepareStatement(sqlNewUser)) {
+				stmt.setInt(1, idUser);
 				stmt.setString(2, name);
 				stmt.setString(3, surname);
 				stmt.setString(4, email);
@@ -130,12 +149,11 @@ public class UserFactory {
 				stmt.setString(7, birthday);
 				stmt.executeUpdate();
 				return true;
-			} catch(SQLException e) {
+			} catch (SQLException e) {
 				Logger.getLogger(UserFactory.class.getName()).log(Level.SEVERE, null, e);
-				System.out.println("Errore in addUser");
+				System.out.println("Errore in addUser esecuzione query di aggiunta");
 			}
-		
-		
+
 		}
 		return false;
 	}
