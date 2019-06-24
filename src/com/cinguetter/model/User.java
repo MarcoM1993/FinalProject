@@ -42,7 +42,6 @@ public class User {
 	public String getBirthdayString() {
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-mm-dd");
 		formatter.setCalendar(birthday);
-		System.out.println(formatter.format(birthday.getTime()));
 		return formatter.format(birthday.getTime());
 		
 	}
