@@ -53,37 +53,58 @@ public class UserFactory {
 		return false;
 	}
 
-	public boolean editDetails(String newName, String newSurname, String newEmail, String newUrlImageProfile,
-			String newPassword, String email) {
+	public boolean editDetails(String newName, String newSurname, String newEmail, String newPassword,
+			String newUrlImageProfile, String newBirthday, String email) {
+		try (Connection conn = DbManager.getInstance().getDbConnection()) {
+			conn.setAutoCommit(false);
+			if (!newEmail.equals(email)) {
+				String sqlCheckEmail = "select email from users where email = ? ";
+				try (PreparedStatement stmt = conn.prepareStatement(sqlCheckEmail)) {
+					stmt.setString(1, newEmail);
+					ResultSet result = stmt.executeQuery();
+					if (result.next()) {
+						return false;
+					}
 
-		int idUser = 0;
-		String sqlGetId = "select id from users where email = ? ";
-		try (Connection conn = DbManager.getInstance().getDbConnection();
-				PreparedStatement stmt = conn.prepareStatement(sqlGetId)) {
-			stmt.setString(1, email);
-			ResultSet result = stmt.executeQuery();
-			if (result.next()) {
-				idUser = result.getInt("id");
+				} catch (SQLException e) {
+					conn.rollback();
+					Logger.getLogger(UserFactory.class.getName()).log(Level.SEVERE, null, e);
+					System.out.println("Errore in editDetails");
+				}
+			}
+			int idUser = 0;
+			String sqlGetId = "select id from users where email = ? ";
+			try (PreparedStatement stmt = conn.prepareStatement(sqlGetId)) {
+				stmt.setString(1, email);
+				ResultSet result = stmt.executeQuery();
+				if (result.next()) {
+					idUser = result.getInt("id");
 
+				}
+
+			} catch (SQLException e) {
+				conn.rollback();
+				Logger.getLogger(UserFactory.class.getName()).log(Level.SEVERE, null, e);
+				System.out.println("Errore in editDetails");
 			}
 
-		} catch (SQLException e) {
-			Logger.getLogger(UserFactory.class.getName()).log(Level.SEVERE, null, e);
-			System.out.println("Errore in addUser");
-		}
-
-		String sqlEditUserDetails = " update users set name = ?, surname= ?, email=?, password=?, urlimageprofile=?, birthday=? where id = ? ";
-		try (Connection conn = DbManager.getInstance().getDbConnection();
-				PreparedStatement stmt = conn.prepareStatement(sqlEditUserDetails)) {
-			stmt.setString(1, newName);
-			stmt.setString(2, newSurname);
-			stmt.setString(3, newEmail);
-			stmt.setString(4, newUrlImageProfile);
-			stmt.setString(5, newPassword);
-			stmt.setInt(6, idUser);
-			stmt.executeUpdate();
-
-			return true;
+			String sqlEditUserDetails = " update users set name = ?, surname= ?, email=?, password=?, urlimageprofile=?, birthday=? where id = ? ";
+			try (PreparedStatement stmt = conn.prepareStatement(sqlEditUserDetails)) {
+				stmt.setString(1, newName);
+				stmt.setString(2, newSurname);
+				stmt.setString(3, newEmail);
+				stmt.setString(4, newPassword);
+				stmt.setString(5, newUrlImageProfile);
+				stmt.setString(6, newBirthday);
+				stmt.setInt(7, idUser);
+				stmt.executeUpdate();
+				conn.commit();
+				return true;
+			} catch (SQLException e) {
+				conn.rollback();
+				Logger.getLogger(UserFactory.class.getName()).log(Level.SEVERE, null, e);
+				System.out.println("Errore in addUser");
+			}
 		} catch (SQLException e) {
 			Logger.getLogger(UserFactory.class.getName()).log(Level.SEVERE, null, e);
 			System.out.println("Errore in addUser");
