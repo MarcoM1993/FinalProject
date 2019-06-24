@@ -64,6 +64,12 @@
 					  	<input type="date" class="form-control mb-4" id="birthday" name="birthday" <c:if test= "${not empty user}">value="${user.birthday}"</c:if>/> 
 						</div>
 					
+			 			<c:if test="${not empty error}">
+		 				<div  class="alert alert-danger" role="alert">
+		 					${error}
+		 				</div>
+		 				</c:if>
+					
 						<button type="submit" class="rounded btn-sample btn-block btn-lg"><c:choose><c:when test="${not empty user}">Modify</c:when><c:otherwise>Register</c:otherwise></c:choose></button>
 					
 		 			</form>

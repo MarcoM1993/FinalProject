@@ -69,7 +69,7 @@ public class UserFactory {
 				} catch (SQLException e) {
 					conn.rollback();
 					Logger.getLogger(UserFactory.class.getName()).log(Level.SEVERE, null, e);
-					System.out.println("Errore in editDetails");
+					System.out.println("Errore in editDetails 72");
 				}
 			}
 			int idUser = 0;
@@ -88,7 +88,7 @@ public class UserFactory {
 				System.out.println("Errore in editDetails");
 			}
 
-			String sqlEditUserDetails = " update users set name = ?, surname= ?, email=?, password=?, urlimageprofile=?, birthday=? where id = ? ";
+			String sqlEditUserDetails = " update users set name = ?, surname= ?, email=?, password=?, urlimageprofile=?, birthday=to_date (?, 'yyyy-mm-dd') where id = ? ";
 			try (PreparedStatement stmt = conn.prepareStatement(sqlEditUserDetails)) {
 				stmt.setString(1, newName);
 				stmt.setString(2, newSurname);
@@ -103,11 +103,11 @@ public class UserFactory {
 			} catch (SQLException e) {
 				conn.rollback();
 				Logger.getLogger(UserFactory.class.getName()).log(Level.SEVERE, null, e);
-				System.out.println("Errore in addUser");
+				System.out.println("Errore in editDetails 106");
 			}
 		} catch (SQLException e) {
 			Logger.getLogger(UserFactory.class.getName()).log(Level.SEVERE, null, e);
-			System.out.println("Errore in addUser");
+			System.out.println("Errore in editDetails 110");
 		}
 		return false;
 	}
@@ -154,7 +154,7 @@ public class UserFactory {
 	public boolean addUser(String name, String surname, String email, String password, String urlImageProfile,
 			String birthday) {
 
-		if (getUser(email) == null) { // se l'Utente non c'è lo aggiungo, altrimenti return false;
+		if (getUser(email) == null) { // se l'Utente non c'ï¿½ lo aggiungo, altrimenti return false;
 
 			int idUser = 0;
 
@@ -171,7 +171,7 @@ public class UserFactory {
 				System.out.println("Errore in addUser nel recuper di maxId");
 			}
 
-			String sqlNewUser = " insert into users values (?, ?, ? , ?, ?, ?, to date (?, 'yyyy-mm-dd') ";
+			String sqlNewUser = " insert into users values (?, ?, ? , ?, ?, ?, to_date (?, 'yyyy-mm-dd') ";
 			try (Connection conn = DbManager.getInstance().getDbConnection();
 					PreparedStatement stmt = conn.prepareStatement(sqlNewUser)) {
 				stmt.setInt(1, idUser);
