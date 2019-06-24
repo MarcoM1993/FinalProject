@@ -1,12 +1,13 @@
 package com.cinguetter.model;
 
-import java.nio.channels.SelectableChannel;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.GregorianCalendar;
-import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -68,10 +69,15 @@ public class UserFactory {
 				String name = result.getString("name");
 				String surname = result.getString("surname");
 				String urlImageProfile = result.getString("urlImageProfile");
-				// GregorianCalendar birthday=result.getGregorianCalendar("birthday");
-
-				User user = new User(name, surname, email, urlImageProfile, new GregorianCalendar());// TODO gestire le
-																										// logiche date
+			    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-mm-dd");
+				GregorianCalendar birthday = (GregorianCalendar) Calendar.getInstance();
+				try {
+					birthday.setTime(formatter.parse(result.getString("birthday")));
+				} catch (ParseException e) {
+					e.printStackTrace();
+					System.out.println("La mamma egua del formatter sta facendo cose sbagliate");
+				}
+				User user = new User(name, surname, email, urlImageProfile, birthday);
 				return user;
 			}
 
