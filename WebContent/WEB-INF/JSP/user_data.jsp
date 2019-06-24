@@ -16,10 +16,10 @@
 		<%-- Se sto richiamando questa jsp non sono per forza loggato e quindi devo verificarlo --%>
 		<c:choose>
 			<c:when test= "${not empty user}"> 
-				<c:set var="logged" scope="request" value=true/><%-- Se esiste un utente imposto la variabile logged a true --%>
+				<c:set var="logged" scope="request" value="${true}"/><%-- Se esiste un utente imposto la variabile logged a true --%>
 			</c:when>
 			<c:otherwise>
-				<c:set var="logged" scope="request" value=false/><%-- Se non esiste un utente imposto la variabile logged a false --%>
+				<c:set var="logged" scope="request" value="${false}"/><%-- Se non esiste un utente imposto la variabile logged a false --%>
 			</c:otherwise>
 		</c:choose>
 				

@@ -14,7 +14,7 @@
 <body>
 		<%-- Imposto le variabili che servono alla navbar per essere visualizzata nel modo corretto --%>
 		<c:set var="pageType" scope="request" value="login"/> <%-- Se sto generando questo jsp sono per forza in login --%>
-		<c:set var="logged" scope="request" value=false/> <%-- Il login viene mostrato solo se l'utente è loggato, quindi se arriviamo a questo punto non possiamo essere loggati --%>
+		<c:set var="logged" scope="request" value="${false}"/> <%-- Il login viene mostrato solo se l'utente è loggato, quindi se arriviamo a questo punto non possiamo essere loggati --%>
 		<jsp:include page="nav_bar.jsp"></jsp:include>
 		<div class="row col-lg-12 col-md-12 col-sm-12">
 			
