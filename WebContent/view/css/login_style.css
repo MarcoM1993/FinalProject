@@ -1,0 +1,12 @@
+@charset "UTF-8";
+
+#form{
+	margin-top: 50px;
+	background-color:#efefef;
+}
+
+.sign{
+	width:120px;
+	height:40px;
+	margin-right: 40px;
+}

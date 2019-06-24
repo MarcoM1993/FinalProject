@@ -1,0 +1,88 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css?family=Amatic+SC&display=swap');
+
+#title{
+	font-family: 'Amatic SC', cursive;
+	font-size: 35px;
+	font-weight: bold;
+}
+
+
+#mylinks{
+	align-items:baseline;
+
+} 
+
+.myheader{
+	dispaly:flex;
+}
+
+.mynav{
+	background-color:#ecbf72;
+	text-align:center;
+}
+
+.mynavlink{
+	color:white;
+	font-size: 20px;
+	flex-direction:row;
+	padding-left:15px;
+}
+
+.mynavlink:hover, 
+.mynavlink:focus, 
+.mynavlink:active, 
+.mynavlink.active { 
+  color: #49247A; 
+} 
+
+#loginButton{
+	font-size:20px;
+}
+
+
+.btn-sample { 
+  color: #ffffff; 
+  background-color: #611BBD; 
+  border-color: #130269; 
+} 
+ 
+.btn-sample:hover, 
+.btn-sample:focus, 
+.btn-sample:active, 
+.btn-sample.active, 
+.open .dropdown-toggle.btn-sample { 
+  color: #ffffff; 
+  background-color: #49247A; 
+  border-color: #130269; 
+} 
+ 
+.btn-sample:active, 
+.btn-sample.active, 
+.open .dropdown-toggle.btn-sample { 
+  background-image: none; 
+} 
+ 
+.btn-sample.disabled, 
+.btn-sample[disabled], 
+fieldset[disabled] .btn-sample, 
+.btn-sample.disabled:hover, 
+.btn-sample[disabled]:hover, 
+fieldset[disabled] .btn-sample:hover, 
+.btn-sample.disabled:focus, 
+.btn-sample[disabled]:focus, 
+fieldset[disabled] .btn-sample:focus, 
+.btn-sample.disabled:active, 
+.btn-sample[disabled]:active, 
+fieldset[disabled] .btn-sample:active, 
+.btn-sample.disabled.active, 
+.btn-sample[disabled].active, 
+fieldset[disabled] .btn-sample.active { 
+  background-color: #611BBD; 
+  border-color: #130269; 
+} 
+ 
+.btn-sample .badge { 
+  color: #611BBD; 
+  background-color: #ffffff; 
+}
