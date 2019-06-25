@@ -35,8 +35,10 @@ public class CinguettFactory {
 		
 		String sqlNewCinguett = " insert into cinguetts values (?, ?, ?, to_date (?, 'yyyy-mm-dd hh24:mi:ss')) ";
 		
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
-		String postTime = formatter.format(Calendar.getInstance());
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		Calendar cal = Calendar.getInstance();
+		String postTime = formatter.format(cal.getTime());
+		System.out.println(formatter.format(cal.getTime()));
 		
 		try (Connection conn = DbManager.getInstance().getDbConnection();
 				PreparedStatement stmt = conn.prepareStatement(sqlNewCinguett)) {
