@@ -146,7 +146,7 @@ public class UserFactory {
 			return birthday;
 		} catch (ParseException e) {
 			e.printStackTrace();
-			System.out.println("La mamma egua del formatter sta facendo cose sbagliate, errore in userBithdayManager");
+			System.out.println("Il formatter sta facendo cose sbagliate, errore in userBithdayManager");
 		}
 		return null;
 	}
