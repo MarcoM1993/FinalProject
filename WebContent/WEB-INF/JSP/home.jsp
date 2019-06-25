@@ -16,13 +16,49 @@
 		<c:set var="logged" scope="request" value="${true}"/> <%-- Se siamo nella pagina di Home, siamo già loggati quindi per forza true --%>
 		<jsp:include page="nav_bar.jsp"></jsp:include>
 		
+		
 		<%-- Aggiungere la funzionalità responsive con bootstrap: vedi login --%>
 		
-		<form action="home.html" method="post">
-			<h1 for="cinguett_text"> Add Cinguett </h1>
-			<textarea name="cinguett_text" rows="4" cols="50"></textarea>
-			<button type="submit" class="rounded btn-sample sign">Send</button>
-		</form>
+		
+		
+		<div id="cinguett_post">
+			<form action="home.html" method="post">
+				<label id="label_add_text" for="cinguett_text">Add Cinguett</label>
+				<textarea name="cinguett_text" rows="4" cols="50"></textarea>   <%-- Regola CSS: resize: none; --%>
+				<button type="submit" class="rounded btn-sample sign">Post</button>
+			</form>
+		</div>
+		
+			<c:forEach var="cinguett" items="${cinguettList}"></c:forEach>  <%-- --%>
+			
+		
+		<div id="cinguett">
+			<div id="user_info">
+			    <img src="${userMap.get(cinguett.userId).urlImageProfile}"> 
+				<label id="label_user_name"> ${userMap.get(cinguett.userId).name} ${userMap.get(cinguett.userId).surname} </label>
+			</div>
+			<div id="cinguett_text">
+				<p> ${cinguett.text} </p>
+			</div>
+			<div id="comments">
+				<h6>Comments:</h6>
+					
+						<c:forEach var="comment" items="${commentList}">
+							<div>
+								<img src="${userMap.get(comment.userId).urlImageProfile}"> 
+								<p> ${comment.text}</p>
+							</div>
+						</c:forEach>
+			</div>
+	        <form>
+	        	<label id="label_add_comment" for="comment_text">Add comment:</label>
+				<textarea name="comment_text" rows="2" cols="40"></textarea>   <%-- Regola CSS: resize: none; --%>
+				<button type="submit" class="rounded btn-sample sign">Send</button>	
+			</form>
+		</div>
+		
+		
+		
 		
 	</body>
 </html>
