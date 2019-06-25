@@ -55,10 +55,11 @@ public class Home extends HttpServlet {
 		
 		if(cinguettText != null) {
 			CinguettFactory.getInstance().addCinguett(cinguettText, (String) session.getAttribute("email"));
+			
 		} else if(commentText != null) {
-			CommentFactory.getInstance().addComment(commentText, )
+			CommentFactory.getInstance().addComment(commentText, Integer.parseInt(request.getParameter("cinguettId")) , (String) session.getAttribute("email"));
 		}
-
+		doGet(request, response);
 	}
 
 }
