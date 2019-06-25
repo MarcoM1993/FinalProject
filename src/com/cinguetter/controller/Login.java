@@ -34,21 +34,26 @@ public class Login extends HttpServlet {
 			throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
 		
-		String email = request.getParameter("email");
-		String password = request.getParameter("password");
-
-		if (email!= null && password != null && 
-			!email.isEmpty() && !password.isEmpty() && 
-			UserFactory.getInstance().login(email, password) == true){
-			String logout = request.getParameter("logout");
-			if (logout != null) {
-				session.invalidate();
-				request.getRequestDispatcher("WEB-INF/JSP/login.jsp").forward(request, response);
-			} else {
-				response.sendRedirect("home.html");
-			}
-		} else {
+		if(session == null || session.getAttribute("email") == null || session.getAttribute("password") == null) {
+			
 			request.getRequestDispatcher("WEB-INF/JSP/login.jsp").forward(request, response);
+			
+		}else {
+			
+			String email = (String) session.getAttribute("email");
+			String password = (String) session.getAttribute("password");
+			
+			if (email!= null && password != null && 
+				!email.isEmpty() && !password.isEmpty() && 
+				UserFactory.getInstance().login(email, password) == true){
+				String logout = request.getParameter("logout");
+				if (logout != null) {
+					session.invalidate();
+					request.getRequestDispatcher("WEB-INF/JSP/login.jsp").forward(request, response);
+				} else {
+					response.sendRedirect("home.html");
+				}
+			}
 		}
 	}
 
@@ -65,7 +70,6 @@ public class Login extends HttpServlet {
 		if (email!= null && password != null && 
 			!email.isEmpty() && !password.isEmpty() && 
 			UserFactory.getInstance().login(email, password) == true) {
-			
 			HttpSession session = request.getSession();
 			session.setAttribute("email", email);
 			session.setAttribute("password", password);
