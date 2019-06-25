@@ -42,7 +42,7 @@ public class Home extends HttpServlet {
 			List<PostedMessage> cinguetts = CinguettFactory.getInstance().getCinguetts(10);
 			request.setAttribute("cinguettList", cinguetts);
 			
-			HashMap<Integer, List<Comment>> commentsMap = CommentFactory.getInstance().getCommentsMap(cinguetts);
+			Map<Integer, List<Comment>> commentsMap = CommentFactory.getInstance().getCommentsMap(cinguetts);
 			request.setAttribute("commentsMap", commentsMap);
 
 			request.setAttribute("cinguettList", cinguetts);
