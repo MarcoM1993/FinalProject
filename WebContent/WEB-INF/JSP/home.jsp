@@ -48,8 +48,9 @@
 			<div id="comments">
 				<h6>Comments:</h6>
 					
-						<c:forEach var="comment" items="${commentList}">
+						<c:forEach var="comment" items="${commentsMap.get(cinguett.id)}">
 							<div>
+							aaaaaa
 								<img src="${userMap.get(comment.userId).urlImageProfile}"> 
 								<p> ${comment.text}</p>
 							</div>
@@ -57,6 +58,7 @@
 			</div>
 	        <form action="home.html" method="post">
 	        	<label id="label_add_comment" for="comment_text">Add comment:</label>
+	        	<input type="hidden" name="cinguettId" value="${cinguett.id}"/>
 				<textarea name="comment_text" rows="2" cols="30" class="form-control mb-4"></textarea>
 				<button type="submit" class="rounded btn-sample sign comment">Send</button>	
 			</form>
