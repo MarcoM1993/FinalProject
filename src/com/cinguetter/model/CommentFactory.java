@@ -8,7 +8,9 @@ import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -81,4 +83,16 @@ public class CommentFactory {
 		
 		return null;
 	}
+	
+	public Map<Integer, List<Comment>> getCommentsMap(List<PostedMessage> postedMessages){
+		
+		HashMap<Integer, List<Comment>> commentsMap = new HashMap<Integer, List<Comment>>();
+		
+		for(PostedMessage message : postedMessages) {
+			commentsMap.put(message.getId(), getComments(message.getId()));
+		}
+		
+		return commentsMap;
+	}
+	
 }
