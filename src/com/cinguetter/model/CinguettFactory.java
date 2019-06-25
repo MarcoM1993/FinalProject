@@ -35,18 +35,19 @@ public class CinguettFactory {
 		
 		try (Connection conn = DbManager.getInstance().getDbConnection(); Statement stmt = conn.createStatement())  {
 
-			String sql = "select c.text, c.post_time, u.name, u.surname, u.urlimageprofile from cinguetts c, users where c.user_id = u.id and ROWNUM <= " 
-					+ numberOfCinguetts +"ORDER BY c.post_time DESC;";
+			String sql = "select id, text, user_id from cinguetts where ROWNUM <= "+ numberOfCinguetts +"ORDER BY c.post_time DESC;";
 
 			ResultSet result = stmt.executeQuery(sql);
 
 			while (result.next()) {
-				cinguetts.add(new Cinguett(result.getString(columnIndex)ext, userEmail, postedTime, id));
+				cinguetts.add(new Cinguett(result.getInt("id"), result.getString("text"), result.getInt("user_id")));
 			}
 
+			return cinguetts;
+					
 		} catch (SQLException e) {
 			Logger.getLogger(UserFactory.class.getName()).log(Level.SEVERE, null, e);
-			System.out.println("errore in login dentro UserFactory");
+			System.out.println("errore in getCinguetts dentro CinguettsFactory");
 		}	
 		
 		return null;

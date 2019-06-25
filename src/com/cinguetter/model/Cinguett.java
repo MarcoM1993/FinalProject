@@ -2,8 +2,8 @@ package com.cinguetter.model;
 
 public class Cinguett extends PostedMessage {
 
-	public Cinguett(String text, String userId, int id) {
-		super(text, userId, id);
+	public Cinguett(int id, String text, int userId) {
+		super(id, text, userId);
 
 	}
 

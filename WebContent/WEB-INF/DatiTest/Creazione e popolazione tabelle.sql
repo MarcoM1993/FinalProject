@@ -43,6 +43,7 @@ insert into users values(2,'Mara', 'Medda','mara@gmail.com', 'password','default
 insert into users values(3,'Davide', 'Scintu','davide@gmail.com', 'password','default.jpg',to_date('1995-01-12', 'yyyy-mm-dd'));
 insert into users values(4,'Federico', 'Spiga','federico@gmail.com', 'password','default.jpg',to_date('1995-01-10', 'yyyy-mm-dd'));
 
+
 insert into cinguetts values(0, 'Ciao sono Marco', 0,  TO_DATE('2019-05-15 8:30:25', 'YYYY-MM-DD HH24:MI:SS'));
 insert into cinguetts values(1, 'Ciao sono eskere', 2,  TO_DATE('2018-05-15 8:30:25', 'YYYY-MM-DD HH24:MI:SS'));
 insert into cinguetts values(2, 'Buongiornissimo', 1,  TO_DATE('2019-04-15 8:30:25', 'YYYY-MM-DD HH24:MI:SS'));
@@ -55,4 +56,11 @@ insert into cinguetts values(8, 'I love sushi', 2,  TO_DATE('2019-05-15 18:30:25
 insert into cinguetts values(9, 'sushimpru', 4,  TO_DATE('2019-05-15 20:30:25', 'YYYY-MM-DD HH24:MI:SS'));
 insert into cinguetts values(10, 'Team', 2, TO_DATE('2019-05-15 14:30:25', 'YYYY-MM-DD HH24:MI:SS'));
 insert into cinguetts values(11, 'Enjoy Java', 3,  TO_DATE('2019-05-15 15:30:25', 'YYYY-MM-DD HH24:MI:SS'));
+
+
+insert into comments values(0, 'Bravo bro', TO_DATE('2019-06-25 8:30:25', 'YYYY-MM-DD HH24:MI:SS'), 0, 2 );
+insert into comments values(1, 'Buuuu', TO_DATE('2019-06-25 8:40:25', 'YYYY-MM-DD HH24:MI:SS'), 1, 2 );
+insert into comments values(2, 'Yeeee', TO_DATE('2019-06-25 8:35:25', 'YYYY-MM-DD HH24:MI:SS'), 1, 1 );
+insert into comments values(3, 'Anche a me', TO_DATE('2019-06-25 8:32:25', 'YYYY-MM-DD HH24:MI:SS'), 3, 0 );
+insert into comments values(4, 'Tvb anche io', TO_DATE('2019-06-25 8:37:25', 'YYYY-MM-DD HH24:MI:SS'), 3, 0 );
 

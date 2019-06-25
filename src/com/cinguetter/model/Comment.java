@@ -4,8 +4,8 @@ public class Comment extends PostedMessage {
 
 	private int cinguettId;
 
-	public Comment(String text, String userId, int id, int cinguettId) {
-		super(text, userId, id);
+	public Comment( int id, String text, int userId, int cinguettId) {
+		super(id, text, userId);
 		this.cinguettId = cinguettId;
 
 	}
