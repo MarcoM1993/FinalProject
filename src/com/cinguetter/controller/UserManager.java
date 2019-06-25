@@ -66,15 +66,12 @@ public class UserManager extends HttpServlet {
 		String newPassword = request.getParameter("password");
 		String newUrlImageProfile = request.getParameter("urlImageProfile");
 		String newBirthday = request.getParameter("birthday");
-		
-		System.out.println(newBirthday);
+
 
 		// Se l'utente � loggato
 		if (email != null && password != null && !email.isEmpty() && !password.isEmpty()
 				&& UserFactory.getInstance().login(email, password) == true) {
 			
-			System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-
 			// Se la password non � stata inserita recupero la vecchia dalla sessione
 			if (newPassword == null || newPassword.isEmpty()) {
 				newPassword = password;
@@ -101,7 +98,6 @@ public class UserManager extends HttpServlet {
 			}
 		}else {
 			// Dobbiamo registrare un nuovo utente
-			System.out.println("BBBBBBBBBBBBBBBBBBBBBB");
 
 			// Se la creazione non va a buon fine
 			if(UserFactory.getInstance().addUser(newName, newSurname, newEmail, newPassword, newUrlImageProfile, newBirthday) == false) {

@@ -56,14 +56,14 @@ public class UserFactory {
 	public boolean editDetails(String newName, String newSurname, String newEmail, String newPassword,
 			String newUrlImageProfile, String newBirthday, String email) {
 		try (Connection conn = DbManager.getInstance().getDbConnection()) {
-			conn.setAutoCommit(false); //Iniza la transazione perchè se due persone entrano in concorrenza in questo metodo potrebbero superare il successivo controllo e impostare assieme la stessa mail
-			if (!newEmail.equals(email)) { //Se la vecchia mail è diversa dalla nuova verifico che non siano presenti mail uguali in database prima di permettere il cambio
+			conn.setAutoCommit(false); //Iniza la transazione perchï¿½ se due persone entrano in concorrenza in questo metodo potrebbero superare il successivo controllo e impostare assieme la stessa mail
+			if (!newEmail.equals(email)) { //Se la vecchia mail ï¿½ diversa dalla nuova verifico che non siano presenti mail uguali in database prima di permettere il cambio
 				String sqlCheckEmail = "select email from users where email = ? "; 
 				try (PreparedStatement stmt = conn.prepareStatement(sqlCheckEmail)) {
 					stmt.setString(1, newEmail);
 					ResultSet result = stmt.executeQuery();
 					if (result.next()) {
-						return false; //se trova risultati la mail esiste quindi interrompo l'esecuzione la modifica non si può fare
+						return false; //se trova risultati la mail esiste quindi interrompo l'esecuzione la modifica non si puï¿½ fare
 					}
 
 				} catch (SQLException e) {
@@ -72,13 +72,13 @@ public class UserFactory {
 					System.out.println("Errore in editDetails 72");
 				}
 			}
-			int idUser = 0; //inizializzo la variabile che conterrà l'id dell'utente
+			int idUser = 0; //inizializzo la variabile che conterrï¿½ l'id dell'utente
 			String sqlGetId = "select id from users where email = ? "; //cerco l'id dell'utente tramite la sua mail
 			try (PreparedStatement stmt = conn.prepareStatement(sqlGetId)) {
 				stmt.setString(1, email);
 				ResultSet result = stmt.executeQuery();
 				if (result.next()) {
-					idUser = result.getInt("id"); //a questo punto è impossibile che non trovi corrispondenza perchè altrimenti l'utente non potrebbe essere loggato
+					idUser = result.getInt("id"); //a questo punto ï¿½ impossibile che non trovi corrispondenza perchï¿½ altrimenti l'utente non potrebbe essere loggato
 
 				}
 
@@ -98,7 +98,7 @@ public class UserFactory {
 				stmt.setString(6, newBirthday);
 				stmt.setInt(7, idUser);
 				stmt.executeUpdate();
-				conn.commit(); //committo le modifiche, tutto è andato a buon fine
+				conn.commit(); //committo le modifiche, tutto ï¿½ andato a buon fine
 				return true;//operazione conclusa con successo
 			} catch (SQLException e) {
 				conn.rollback();//elimino le modifiche effettuate in transazione
@@ -153,6 +153,8 @@ public class UserFactory {
 
 	public boolean addUser(String name, String surname, String email, String password, String urlImageProfile,
 			String birthday) {
+		
+		System.out.println(birthday);
 
 		if (getUser(email) == null) { // se l'Utente non ce lo aggiungo, altrimenti return false;
 
@@ -163,7 +165,7 @@ public class UserFactory {
 				ResultSet result = stmt.executeQuery(sqlMaxId);
 
 				if (result.next()) {
-					idUser = result.getInt("id") + 1;
+					idUser = result.getInt("max(id)") + 1;
 				}
 
 			} catch (SQLException e) {
@@ -171,10 +173,10 @@ public class UserFactory {
 				System.out.println("Errore in addUser nel recuper di maxId");
 			}
 
-			String sqlNewUser = " insert into users values (?, ?, ? , ?, ?, ?, to_date (?, 'yyyy-mm-dd') ";
+			String sqlNewUser = " insert into users values (?, ?, ?, ?, ?, ?, to_date (?, 'yyyy-mm-dd')) ";
 			try (Connection conn = DbManager.getInstance().getDbConnection();
 					PreparedStatement stmt = conn.prepareStatement(sqlNewUser)) {
-				stmt.setInt(1, idUser);
+				stmt.setDouble(1, idUser);
 				stmt.setString(2, name);
 				stmt.setString(3, surname);
 				stmt.setString(4, email);
