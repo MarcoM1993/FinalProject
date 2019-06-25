@@ -1,13 +1,11 @@
 package com.cinguetter.model;
 
-import java.util.GregorianCalendar;
-
 public class Comment extends PostedMessage {
 
 	private int cinguettId;
 
-	public Comment(String text, String userEmail, GregorianCalendar postedTime, int id, int cinguettId) {
-		super(text, userEmail, postedTime, id);
+	public Comment(String text, String userId, int id, int cinguettId) {
+		super(text, userId, id);
 		this.cinguettId = cinguettId;
 
 	}
