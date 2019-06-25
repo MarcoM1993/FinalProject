@@ -45,10 +45,7 @@ public class Home extends HttpServlet {
 			HashMap<Integer, List<Comment>> commentsMap = CommentFactory.getInstance().getCommentsMap(cinguetts);
 			request.setAttribute("commentsMap", commentsMap);
 
-			for(Map.Entry<Integer, List<Comment>> comments: commentsMap.entrySet()) {
-				cinguetts.addAll(comments.getValue());
-			}
-			
+			request.setAttribute("cinguettList", cinguetts);
 			request.setAttribute("userMap", UserFactory.getInstance().getUsersMap(cinguetts));
 			request.getRequestDispatcher("WEB-INF/JSP/home.jsp").forward(request, response);
 
