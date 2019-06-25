@@ -15,10 +15,21 @@
 		<c:set var="pageType" scope="request" value="login"/>
 		<c:set var="logged" scope="request" value="${true}"/>
 		<jsp:include page="nav_bar.jsp"></jsp:include>
-
-		<form action="home.html" method="post">
-
-
-		</form>
+		
+		<div id="form"  class="border border-light p-5 rounded" >
+	 		<h1>Login</h1>
+			<form action="home.html" method="post">
+				<div>
+				  	<label for="cinguett">My Cinguett</label>
+				  	<input type="text" id="cinguett" name="cinguett" class="form-control mb-4"/> 
+				</div>
+			</form>
+			<form action="home.html" method="post">
+				<div>
+				  	<label for="comment">Write a Comment</label>
+				  	<input type="text" id="comment" name="comment" class="form-control mb-4"/>
+			  	</div>
+			</form>	
+		</div>
 	</body>
 </html>
