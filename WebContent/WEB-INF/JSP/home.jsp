@@ -23,12 +23,14 @@
 				  	<label for="cinguett">My Cinguett</label>
 				  	<input type="text" id="cinguett" name="cinguett" class="form-control mb-4"/> 
 				</div>
+				<button type="submit" class="rounded btn-sample sign">Post</button>
 			</form>
 			<form action="home.html" method="post">
 				<div>
 				  	<label for="comment">Write a Comment</label>
 				  	<input type="text" id="comment" name="comment" class="form-control mb-4"/>
 			  	</div>
+			  	<button type="submit" class="rounded btn-sample sign">Send</button>
 			</form>	
 		</div>
 	</body>
