@@ -1,11 +1,9 @@
 package com.cinguetter.model;
 
-import java.util.GregorianCalendar;
-
 public class Cinguett extends PostedMessage {
 
-	public Cinguett(String text, String userEmail, GregorianCalendar postedTime, int id) {
-		super(text, userEmail, postedTime, id);
+	public Cinguett(String text, String userId, int id) {
+		super(text, userId, id);
 
 	}
 
