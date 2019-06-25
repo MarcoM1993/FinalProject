@@ -217,7 +217,9 @@ public class UserFactory {
 		}
 		
 		sql = sql.substring(0, sql.length()-1);
-		sql += ");";
+		sql += ")";
+		
+		System.out.println(sql);
 		
 		try (Connection conn = DbManager.getInstance().getDbConnection(); Statement stmt = conn.createStatement())  {
 

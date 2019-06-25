@@ -29,7 +29,7 @@
 			</form>
 		</div>
 		
-			<c:forEach var="cinguett" items="${cinguettList}"></c:forEach>  <%-- --%>
+			<c:forEach var="cinguett" items="${cinguettList}">  <%-- --%>
 			
 		
 		<div id="cinguett">
@@ -56,6 +56,7 @@
 				<button type="submit" class="rounded btn-sample sign">Send</button>	
 			</form>
 		</div>
+		</c:forEach>
 		
 		
 		
