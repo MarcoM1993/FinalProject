@@ -56,34 +56,34 @@ public class UserFactory {
 	public boolean editDetails(String newName, String newSurname, String newEmail, String newPassword,
 			String newUrlImageProfile, String newBirthday, String email) {
 		try (Connection conn = DbManager.getInstance().getDbConnection()) {
-			conn.setAutoCommit(false);
-			if (!newEmail.equals(email)) {
-				String sqlCheckEmail = "select email from users where email = ? ";
+			conn.setAutoCommit(false); //Iniza la transazione perchè se due persone entrano in concorrenza in questo metodo potrebbero superare il successivo controllo e impostare assieme la stessa mail
+			if (!newEmail.equals(email)) { //Se la vecchia mail è diversa dalla nuova verifico che non siano presenti mail uguali in database prima di permettere il cambio
+				String sqlCheckEmail = "select email from users where email = ? "; 
 				try (PreparedStatement stmt = conn.prepareStatement(sqlCheckEmail)) {
 					stmt.setString(1, newEmail);
 					ResultSet result = stmt.executeQuery();
 					if (result.next()) {
-						return false;
+						return false; //se trova risultati la mail esiste quindi interrompo l'esecuzione la modifica non si può fare
 					}
 
 				} catch (SQLException e) {
-					conn.rollback();
+					conn.rollback();// elimino le modifiche effettuate in transazione
 					Logger.getLogger(UserFactory.class.getName()).log(Level.SEVERE, null, e);
 					System.out.println("Errore in editDetails 72");
 				}
 			}
-			int idUser = 0;
-			String sqlGetId = "select id from users where email = ? ";
+			int idUser = 0; //inizializzo la variabile che conterrà l'id dell'utente
+			String sqlGetId = "select id from users where email = ? "; //cerco l'id dell'utente tramite la sua mail
 			try (PreparedStatement stmt = conn.prepareStatement(sqlGetId)) {
 				stmt.setString(1, email);
 				ResultSet result = stmt.executeQuery();
 				if (result.next()) {
-					idUser = result.getInt("id");
+					idUser = result.getInt("id"); //a questo punto è impossibile che non trovi corrispondenza perchè altrimenti l'utente non potrebbe essere loggato
 
 				}
 
 			} catch (SQLException e) {
-				conn.rollback();
+				conn.rollback(); // elimino le modifiche effettuate in transazione
 				Logger.getLogger(UserFactory.class.getName()).log(Level.SEVERE, null, e);
 				System.out.println("Errore in editDetails");
 			}
@@ -98,10 +98,10 @@ public class UserFactory {
 				stmt.setString(6, newBirthday);
 				stmt.setInt(7, idUser);
 				stmt.executeUpdate();
-				conn.commit();
-				return true;
+				conn.commit(); //committo le modifiche, tutto è andato a buon fine
+				return true;//operazione conclusa con successo
 			} catch (SQLException e) {
-				conn.rollback();
+				conn.rollback();//elimino le modifiche effettuate in transazione
 				Logger.getLogger(UserFactory.class.getName()).log(Level.SEVERE, null, e);
 				System.out.println("Errore in editDetails 106");
 			}
@@ -109,7 +109,7 @@ public class UserFactory {
 			Logger.getLogger(UserFactory.class.getName()).log(Level.SEVERE, null, e);
 			System.out.println("Errore in editDetails 110");
 		}
-		return false;
+		return false; // se sono arrivato a questo punto qualche metodo ha lanciato un'eccezione
 	}
 
 	public User getUser(String email) {
@@ -154,7 +154,7 @@ public class UserFactory {
 	public boolean addUser(String name, String surname, String email, String password, String urlImageProfile,
 			String birthday) {
 
-		if (getUser(email) == null) { // se l'Utente non c'ï¿½ lo aggiungo, altrimenti return false;
+		if (getUser(email) == null) { // se l'Utente non ce lo aggiungo, altrimenti return false;
 
 			int idUser = 0;
 
