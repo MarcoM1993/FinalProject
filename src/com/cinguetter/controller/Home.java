@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.cinguetter.model.CinguettFactory;
+import com.cinguetter.model.CommentFactory;
 import com.cinguetter.model.PostedMessage;
 import com.cinguetter.model.UserFactory;
 
@@ -48,6 +49,15 @@ public class Home extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		HttpSession session = request.getSession(false);
+		String cinguettText = request.getParameter("cinguett_text");
+		String commentText = request.getParameter("comment_text");
+		
+		if(cinguettText != null) {
+			CinguettFactory.getInstance().addCinguett(cinguettText, (String) session.getAttribute("email"));
+		} else if(commentText != null) {
+			CommentFactory.getInstance().addComment(commentText, )
+		}
 
 	}
 
