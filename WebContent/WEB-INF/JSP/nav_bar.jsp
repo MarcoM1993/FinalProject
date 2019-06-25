@@ -39,7 +39,7 @@
 				<button type="submit" class="btn-sample rounded" id="loginButton"> 
 					<c:choose>
 					<c:when test="${logged==false}">Login</c:when>
-					<c:otherwise>Log-out</c:otherwise>
+					<c:otherwise>Logout</c:otherwise>
 					</c:choose>
 				</button>
 			</form>

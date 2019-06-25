@@ -58,7 +58,7 @@
 			</div>
 	        <form>
 	        	<label id="label_add_comment" for="comment_text">Add comment:</label>
-				<textarea name="comment_text" rows="2" cols="40"></textarea>   <%-- Regola CSS: resize: none; --%>
+				<textarea name="comment_text" rows="2" cols="40" class="form-control mb-4"></textarea>   <%-- Regola CSS: resize: none; --%>
 				<button type="submit" class="rounded btn-sample sign">Send</button>	
 			</form>
 		</div>
