@@ -43,7 +43,7 @@
 				  		<input type="password" id="password" name="password" class="form-control mb-4"/>
 				  	</div>
 					<button type="submit" class="rounded btn-sample sign" formaction="index.html">Sign In</button>
-		 			<button type="submit"class="rounded btn-sample sign" formaction="usermanager.html">Sign Up</button>
+		 			<button type="submit"class="rounded btn-sample sign" formaction="usermanager.html" formmethod="get">Sign Up</button>
 		 			</form>
 	 			</div>
 			</div>
