@@ -60,7 +60,17 @@ public class Home extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		HttpSession session = request.getSession(false);
+		String cinguettText = request.getParameter("cinguett_text");
+		String commentText = request.getParameter("comment_text");
+		
+		if(cinguettText != null) {
+			CinguettFactory.getInstance().addCinguett(cinguettText, (String) session.getAttribute("email"));
+			
+		} else if(commentText != null) {
+			CommentFactory.getInstance().addComment(commentText, Integer.parseInt(request.getParameter("cinguettId")) , (String) session.getAttribute("email"));
+		}
+		doGet(request, response);
 	}
 
 }

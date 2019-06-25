@@ -35,8 +35,9 @@ public class CommentFactory {
 		
 		String sqlNewCinguett = " insert into comments values (?, ?, to_date (?, 'yyyy-mm-dd hh24:mi:ss'), ?, ?) ";
 		
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
-		String postTime = formatter.format(Calendar.getInstance());
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		Calendar cal = Calendar.getInstance();
+		String postTime = formatter.format(cal.getTime());
 		
 		try (Connection conn = DbManager.getInstance().getDbConnection();
 				PreparedStatement stmt = conn.prepareStatement(sqlNewCinguett)) {
@@ -44,7 +45,7 @@ public class CommentFactory {
 			stmt.setString(2, text);
 			stmt.setString(3, postTime);
 			stmt.setInt(4, idUser);
-			stmt.setInt(4, cinguettId);
+			stmt.setInt(5, cinguettId);
 			stmt.executeUpdate();
 			return true;
 		} catch (SQLException e) {
