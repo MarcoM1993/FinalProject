@@ -77,6 +77,7 @@ public class UserFactory {
 					System.out.println("Errore in editDetails 72");
 				}
 			}
+			
 			int idUser = 0; //inizializzo la variabile che conterr� l'id dell'utente
 			String sqlGetId = "select id from users where email = ? "; //cerco l'id dell'utente tramite la sua mail
 			try (PreparedStatement stmt = conn.prepareStatement(sqlGetId)) {
@@ -143,7 +144,7 @@ public class UserFactory {
 
 	}
 
-	public GregorianCalendar userBirthdayManager(String birthdayString) {
+	private GregorianCalendar userBirthdayManager(String birthdayString) {
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-mm-dd");
 		GregorianCalendar birthday = (GregorianCalendar) Calendar.getInstance();
 		try {
@@ -163,21 +164,8 @@ public class UserFactory {
 
 		if (getUser(email) == null) { // se l'Utente non ce lo aggiungo, altrimenti return false;
 
-			int idUser = 0;
-
-			try (Connection conn = DbManager.getInstance().getDbConnection(); Statement stmt = conn.createStatement()) {
-				String sqlMaxId = "select MAX(id) from users";
-				ResultSet result = stmt.executeQuery(sqlMaxId);
-
-				if (result.next()) {
-					idUser = result.getInt("max(id)") + 1;
-				}
-
-			} catch (SQLException e) {
-				Logger.getLogger(UserFactory.class.getName()).log(Level.SEVERE, null, e);
-				System.out.println("Errore in addUser nel recuper di maxId");
-			}
-
+			int idUser = IdManager.getCorrectId("users");
+			
 			String sqlNewUser = " insert into users values (?, ?, ?, ?, ?, ?, to_date (?, 'yyyy-mm-dd')) ";
 			try (Connection conn = DbManager.getInstance().getDbConnection();
 					PreparedStatement stmt = conn.prepareStatement(sqlNewUser)) {
@@ -219,8 +207,6 @@ public class UserFactory {
 		sql = sql.substring(0, sql.length()-1);
 		sql += ")";
 		
-		System.out.println(sql);
-		
 		try (Connection conn = DbManager.getInstance().getDbConnection(); Statement stmt = conn.createStatement())  {
 
 			ResultSet result = stmt.executeQuery(sql);
@@ -237,6 +223,29 @@ public class UserFactory {
 		}	
 		
 		return null;
+	}
+	
+	public int getUserIdFromEmail(String email) {
+		
+		int idUser = 0; //inizializzo la variabile che conterr� l'id dell'utente
+		
+		String sqlGetId = "select id from users where email = ? "; //cerco l'id dell'utente tramite la sua mail
+		try (Connection conn = DbManager.getInstance().getDbConnection(); PreparedStatement stmt = conn.prepareStatement(sqlGetId)) {
+			stmt.setString(1, email);
+			ResultSet result = stmt.executeQuery();
+			if (result.next()) {
+				idUser = result.getInt("id"); //a questo punto � impossibile che non trovi corrispondenza perch� altrimenti l'utente non potrebbe essere loggato
+
+			}
+			
+			return idUser;
+
+		} catch (SQLException e) {
+			Logger.getLogger(UserFactory.class.getName()).log(Level.SEVERE, null, e);
+			System.out.println("Errore in editDetails");
+		}
+		
+		return 0;
 	}
 	
 	

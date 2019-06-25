@@ -34,8 +34,8 @@ public class Login extends HttpServlet {
 			throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
 		
-		String email = (String) session.getAttribute("email");
-		String password = (String) session.getAttribute("password");
+		String email = request.getParameter("email");
+		String password = request.getParameter("password");
 
 		if (email!= null && password != null && 
 			!email.isEmpty() && !password.isEmpty() && 
@@ -65,6 +65,7 @@ public class Login extends HttpServlet {
 		if (email!= null && password != null && 
 			!email.isEmpty() && !password.isEmpty() && 
 			UserFactory.getInstance().login(email, password) == true) {
+			
 			HttpSession session = request.getSession();
 			session.setAttribute("email", email);
 			session.setAttribute("password", password);

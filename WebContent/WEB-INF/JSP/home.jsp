@@ -15,16 +15,22 @@
 		<c:set var="pageType" scope="request" value="HOME"/> <%-- Questa variabile ci serve per capire in che opagina siamo per evidenziare nel menu la pagina corrispondente  --%>
 		<c:set var="logged" scope="request" value="${true}"/> <%-- Se siamo nella pagina di Home, siamo già loggati quindi per forza true --%>
 		<jsp:include page="nav_bar.jsp"></jsp:include>
-		
+		<div class="row col-lg-12 col-md-12 col-sm-12">
+			
+			<div class="col-lg-3 col-md-3 col-sm-3">
+			</div>
+			
+			<div class="col-lg-6 col-md-6 col-sm-6 ">
+				
 		
 		<%-- Aggiungere la funzionalità responsive con bootstrap: vedi login --%>
 		
 		
 		
-		<div id="cinguett_post">
-			<form action="home.html" method="post">
-				<label id="label_add_text" for="cinguett_text">Add Cinguett</label>
-				<textarea name="cinguett_text" rows="4" cols="50"></textarea>   <%-- Regola CSS: resize: none; --%>
+		<div id="form" class="border border-light p-5 rounded">
+			<form action="home.html" method="post" style="display:inline">
+				<h3 id="label_add_text" for="cinguett_text">Add Cinguett</h3>
+				<textarea name="cinguett_text" rows="4" cols="50" class="form-control mb-4"></textarea>   <%-- Regola CSS: resize: none; --%>
 				<button type="submit" class="rounded btn-sample sign">Post</button>
 			</form>
 		</div>
@@ -32,7 +38,7 @@
 			<c:forEach var="cinguett" items="${cinguettList}">  <%-- --%>
 			
 		
-		<div id="cinguett">
+		<div id="cinguett" class="cinguett border border-light p-5 rounded">
 			<div id="user_info">
 			    <img src="${userMap.get(cinguett.userId).urlImageProfile}"> 
 				<label id="label_user_name"> ${userMap.get(cinguett.userId).name} ${userMap.get(cinguett.userId).surname} </label>
@@ -52,13 +58,17 @@
 			</div>
 	        <form>
 	        	<label id="label_add_comment" for="comment_text">Add comment:</label>
-				<textarea name="comment_text" rows="2" cols="40"></textarea>   <%-- Regola CSS: resize: none; --%>
+				<textarea name="comment_text" rows="2" cols="40" class="form-control mb-4"></textarea>   <%-- Regola CSS: resize: none; --%>
 				<button type="submit" class="rounded btn-sample sign">Send</button>	
 			</form>
 		</div>
 		</c:forEach>
 		
-		
+			</div>
+			
+			<div class="col-lg-3 col-md-3 col-sm-3">
+			</div>
+		</div>
 		
 		
 	</body>
