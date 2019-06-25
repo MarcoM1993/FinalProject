@@ -33,7 +33,7 @@
 		 				</div>
 		 			</c:if>
 		 			
-					<form action="index.html" method="post">
+					<form action="index.html" method="post"style="display:inline">
 					<div>
 				  		<label for="email">Email</label>
 				  		<input type="email" id="email" name="email" class="form-control mb-4"/> 
@@ -43,8 +43,10 @@
 				  		<input type="password" id="password" name="password" class="form-control mb-4"/>
 				  	</div>
 					<button type="submit" class="rounded btn-sample sign" formaction="index.html">Sign In</button>
-		 			<button type="submit"class="rounded btn-sample sign" formaction="usermanager.html" formmethod="get">Sign Up</button>
-		 			</form>
+					</form>
+					<form action="usermanager.html" method="get" style="display:inline">
+		 				<button type="submit"class="rounded btn-sample sign">Sign Up</button>
+					</form>	 			
 	 			</div>
 			</div>
 			
