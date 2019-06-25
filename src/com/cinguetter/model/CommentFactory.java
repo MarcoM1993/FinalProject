@@ -65,8 +65,8 @@ public class CommentFactory {
 		List<Comment> comments = new ArrayList<Comment>();
 		
 		try (Connection conn = DbManager.getInstance().getDbConnection(); Statement stmt = conn.createStatement())  {
-
-			String sql = "select id, text, user_id, cinguett_id from comments where cinguett_id= "+ cinguettId + "ORDER BY post_time DESC";
+			System.out.println(cinguettId);
+			String sql = "select id, text, user_id, cinguett_id from comments where cinguett_id = "+cinguettId+ " ORDER BY post_time DESC";
 
 			ResultSet result = stmt.executeQuery(sql);
 
@@ -84,12 +84,13 @@ public class CommentFactory {
 		return null;
 	}
 	
-	public Map<Integer, List<Comment>> getCommentsMap(List<PostedMessage> postedMessages){
+	public Map<Integer, List<Comment>> getCommentsMap(List<PostedMessage> cinguettsList){
 		
 		HashMap<Integer, List<Comment>> commentsMap = new HashMap<Integer, List<Comment>>();
 		
-		for(PostedMessage message : postedMessages) {
-			commentsMap.put(message.getId(), getComments(message.getId()));
+		for(PostedMessage cinguett : cinguettsList) {
+			
+			commentsMap.put(cinguett.getId(), getComments(cinguett.getId()));
 		}
 		
 		return commentsMap;

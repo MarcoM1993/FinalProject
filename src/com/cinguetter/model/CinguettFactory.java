@@ -61,7 +61,7 @@ public class CinguettFactory {
 		
 		try (Connection conn = DbManager.getInstance().getDbConnection(); Statement stmt = conn.createStatement())  {
 
-			String sql = "select id, text, user_id from cinguetts where ROWNUM <= "+ numberOfCinguetts +"ORDER BY post_time DESC";
+			String sql = "select *from (select id, text, user_id from cinguetts ORDER BY post_time DESC) where ROWNUM<= "+ numberOfCinguetts;
 
 			ResultSet result = stmt.executeQuery(sql);
 

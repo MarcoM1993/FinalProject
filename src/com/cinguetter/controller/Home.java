@@ -40,6 +40,7 @@ public class Home extends HttpServlet {
 				&& UserFactory.getInstance().login(email, password) == true) {
 			
 			List<PostedMessage> cinguetts = CinguettFactory.getInstance().getCinguetts(10);
+			
 			request.setAttribute("cinguettList", cinguetts);
 			
 			Map<Integer, List<Comment>> commentsMap = CommentFactory.getInstance().getCommentsMap(cinguetts);

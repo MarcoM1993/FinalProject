@@ -50,7 +50,6 @@
 					
 						<c:forEach var="comment" items="${commentsMap.get(cinguett.id)}">
 							<div>
-							aaaaaa
 								<img src="${userMap.get(comment.userId).urlImageProfile}"> 
 								<p> ${comment.text}</p>
 							</div>
