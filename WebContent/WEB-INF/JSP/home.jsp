@@ -26,7 +26,6 @@
 		<%-- Aggiungere la funzionalità responsive con bootstrap: vedi login --%>
 		
 		
-		
 		<div id="form" class="border border-light p-5 rounded">
 			<form action="home.html" method="post" style="display:inline">
 				<h3 id="label_add_text" for="cinguett_text">Add Cinguett</h3>
@@ -38,7 +37,7 @@
 			<c:forEach var="cinguett" items="${cinguettList}">  <%-- --%>
 			
 		
-		<div id="cinguett" class="cinguett border border-light p-5 rounded">
+		<div class="cinguett border border-light p-5 rounded">
 			<div id="user_info">
 			    <img src="${userMap.get(cinguett.userId).urlImageProfile}"> 
 				<label id="label_user_name"> ${userMap.get(cinguett.userId).name} ${userMap.get(cinguett.userId).surname} </label>
@@ -58,8 +57,8 @@
 			</div>
 	        <form>
 	        	<label id="label_add_comment" for="comment_text">Add comment:</label>
-				<textarea name="comment_text" rows="2" cols="40" class="form-control mb-4"></textarea>   <%-- Regola CSS: resize: none; --%>
-				<button type="submit" class="rounded btn-sample sign">Send</button>	
+				<textarea name="comment_text" rows="2" cols="30" class="form-control mb-4"></textarea>
+				<button type="submit" class="rounded btn-sample sign comment">Send</button>	
 			</form>
 		</div>
 		</c:forEach>
