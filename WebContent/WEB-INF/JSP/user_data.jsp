@@ -14,7 +14,7 @@
 </head>
 <body>
 				<%-- Imposto le variabili che servono alla navbar per essere visualizzata nel modo corretto --%>
-		<c:set var="pageType" scope="request" value="userData"/> <%-- Se sto generando questo jsp sono per forza nella pagina userData --%>
+		<c:set var="pageType" scope="request" value="USER_DATA"/> <%-- Se sto generando questo jsp sono per forza nella pagina userData --%>
 		<%-- Se sto richiamando questa jsp non sono per forza loggato e quindi devo verificarlo --%>
 		<c:choose>
 			<c:when test= "${not empty user}"> 

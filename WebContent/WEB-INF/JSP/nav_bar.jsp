@@ -16,8 +16,10 @@
 	<nav class="navbar navbar-inverse mynav">
 	<div class="container-fluid mynav">
 		<div class="navbar-header myheader">
+			<a id="title" href="index.html" class="navbar-brand" style="color:black">
 			<img class="navbar-brand" id="logo" src="view/Resources/logo.png" width="45" alt="logo Cinguetter" title="logoCinguetter">
-			<h4 class="navbar-brand" id="title"> Cinguetter</h4>
+				Cinguetter
+			</a>
 		</div>
 	<%--INSERIRE IL LOGO A SINISTRA DELLA NAVBAR --%>
 		<ul class="nav navbar-right row" id="mylinks">
@@ -25,19 +27,23 @@
 			<a href="home.html" class="mynavlink <c:if test="$pageType == 'HOME'} "> active </c:if>  ">Home</a>
 		</li>
 		<li>
-			<a href="usermanager.html" class="mynavlink <c:if test="$pageType == 'HOME'} "> active </c:if>"> 
+			<a href="usermanager.html" class="mynavlink <c:if test="$pageType == 'USER_DATA'} "> active </c:if>"> 
 																<c:choose> 
 																<c:when test="${logged==true}">  My Profile</c:when>
 																<c:otherwise> Sign Up</c:otherwise>
 																</c:choose>
 			</a>
 		</li>
-		<li >
-				<a href="index.html" class="mynavlink <c:if test="$pageType == 'HOME'} "> active </c:if>"><button class="btn-sample rounded" id="loginButton"> 
-																<c:choose>
-																<c:when test="${logged==false}">Login</c:when>
-																<c:otherwise>Logut</c:otherwise>
-																</c:choose></button></a>
+		<li class="mynavlink" >
+			<form action="index.html" method="get">
+				<input type="hidden" name="logout" value="yes">
+				<button type="submit" class="btn-sample rounded" id="loginButton"> 
+					<c:choose>
+					<c:when test="${logged==false}">Login</c:when>
+					<c:otherwise>Logut</c:otherwise>
+					</c:choose>
+				</button>
+			</form>
 		</li>
 	</ul>
 	</div>

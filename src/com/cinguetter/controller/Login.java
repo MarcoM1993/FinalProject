@@ -34,16 +34,22 @@ public class Login extends HttpServlet {
 			throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
 		
-		/*if (session != null) {
-			if ((boolean) session.getAttribute("logout")) {
+		String email = request.getParameter("email");
+		String password = request.getParameter("password");
+
+		if (email!= null && password != null && 
+			!email.isEmpty() && !password.isEmpty() && 
+			UserFactory.getInstance().login(email, password) == true){
+			String logout = request.getParameter("logout");
+			if (logout != null) {
 				session.invalidate();
 				request.getRequestDispatcher("WEB-INF/JSP/login.jsp").forward(request, response);
 			} else {
 				response.sendRedirect("home.html");
 			}
-		} else {*/
+		} else {
 			request.getRequestDispatcher("WEB-INF/JSP/login.jsp").forward(request, response);
-		//}
+		}
 	}
 
 	/**
