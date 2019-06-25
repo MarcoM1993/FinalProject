@@ -35,26 +35,21 @@
 		 			
 					<form action="index.html" method="post">
 					<div>
-				  	<label for="email">Email</label>
-				  	<input type="email" id="email" name="email" class="form-control mb-4"/> 
+				  		<label for="email">Email</label>
+				  		<input type="email" id="email" name="email" class="form-control mb-4"/> 
 				  	</div>
 				  	<div>
-				  	<label for="password">Password</label>
-				  	<input type="password" id="password" name="password" class="form-control mb-4"/>
+				  		<label for="password">Password</label>
+				  		<input type="password" id="password" name="password" class="form-control mb-4"/>
 				  	</div>
-				  	<div>
-					<button type="submit" class="rounded btn-sample sign">Sign In</button>
-				
+					<button type="submit" class="rounded btn-sample sign" formaction="index.html">Sign In</button>
+		 			<button type="submit"class="rounded btn-sample sign" formaction="usermanager.html">Sign Up</button>
 		 			</form>
-		 		 	<a href="usermanager.html">
-		 				<button class="rounded btn-sample sign">Sign Up</button>
-		 			</a>
-		 			</div>
 	 			</div>
 			</div>
 			
 			<div class="col-lg-3 col-md-3 col-sm-3">
 			</div>
-			</div>
+		</div>
 </body>
 </html>
