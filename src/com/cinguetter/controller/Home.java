@@ -1,7 +1,10 @@
 package com.cinguetter.controller;
 
 import java.io.IOException;
+import java.security.KeyStore.Entry;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,6 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.cinguetter.model.CinguettFactory;
+import com.cinguetter.model.Comment;
+import com.cinguetter.model.CommentFactory;
 import com.cinguetter.model.PostedMessage;
 import com.cinguetter.model.UserFactory;
 
@@ -35,8 +40,15 @@ public class Home extends HttpServlet {
 				&& UserFactory.getInstance().login(email, password) == true) {
 			
 			List<PostedMessage> cinguetts = CinguettFactory.getInstance().getCinguetts(10);
-
 			request.setAttribute("cinguettList", cinguetts);
+			
+			HashMap<Integer, List<Comment>> commentsMap = CommentFactory.getInstance().getCommentsMap(cinguetts);
+			request.setAttribute("commentsMap", commentsMap);
+
+			for(Map.Entry<Integer, List<Comment>> comments: commentsMap.entrySet()) {
+				cinguetts.addAll(comments.getValue());
+			}
+			
 			request.setAttribute("userMap", UserFactory.getInstance().getUsersMap(cinguetts));
 			request.getRequestDispatcher("WEB-INF/JSP/home.jsp").forward(request, response);
 
