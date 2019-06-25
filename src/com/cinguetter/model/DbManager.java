@@ -9,7 +9,7 @@ public class DbManager {
 	private static DbManager singleton;
 	private static final String URL_DB = "jdbc:oracle:thin:@localhost:1521:xe";
 	private static final String USER = "SYSTEM";
-	private static final String PASSWORD = "password";
+	private static final String PASSWORD = "admin";
 
 	private DbManager() {
 		try {

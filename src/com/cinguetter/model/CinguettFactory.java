@@ -29,13 +29,13 @@ public class CinguettFactory {
 		return true;
 	}
 
-	public List<Cinguett> getCinguetts(int numberOfCinguetts) {
+	public List<PostedMessage> getCinguetts(int numberOfCinguetts) {
 		
-		List<Cinguett> cinguetts = new ArrayList<Cinguett>();
+		List<PostedMessage> cinguetts = new ArrayList<PostedMessage>();
 		
 		try (Connection conn = DbManager.getInstance().getDbConnection(); Statement stmt = conn.createStatement())  {
 
-			String sql = "select id, text, user_id from cinguetts where ROWNUM <= "+ numberOfCinguetts +"ORDER BY c.post_time DESC;";
+			String sql = "select id, text, user_id from cinguetts where ROWNUM <= "+ numberOfCinguetts +"ORDER BY post_time DESC";
 
 			ResultSet result = stmt.executeQuery(sql);
 
