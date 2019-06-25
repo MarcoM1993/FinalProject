@@ -5,7 +5,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -26,7 +29,30 @@ public class CinguettFactory {
 	}
 	
 	public boolean addCinguett(String text, String email) {
-		return true;
+		
+		int idUser = UserFactory.getInstance().getUserIdFromEmail(email);
+		
+		int idCinguett = IdManager.getCorrectId("cinguetts");
+		
+		String sqlNewCinguett = " insert into cinguetts values (?, ?, ?, to_date (?, 'yyyy-mm-dd hh24:mi:ss')) ";
+		
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
+		String postTime = formatter.format(Calendar.getInstance());
+		
+		try (Connection conn = DbManager.getInstance().getDbConnection();
+				PreparedStatement stmt = conn.prepareStatement(sqlNewCinguett)) {
+			stmt.setInt(1, idCinguett);
+			stmt.setString(2, text);
+			stmt.setInt(3, idUser);
+			stmt.setString(4, postTime);
+			stmt.executeUpdate();
+			return true;
+		} catch (SQLException e) {
+			Logger.getLogger(UserFactory.class.getName()).log(Level.SEVERE, null, e);
+			System.out.println("Errore in addCinguett esecuzione query di aggiunta");
+		}
+		
+		return false;
 	}
 
 	public List<PostedMessage> getCinguetts(int numberOfCinguetts) {
