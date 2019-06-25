@@ -10,8 +10,16 @@
 	background-color:#ecbf72;
 }
 
+.comment{
+	float:right;
+}
+
 .sign{
 	width:120px;
 	height:40px;
 	margin-right: 40px;
+}
+
+textarea{
+	resize: none;
 }
