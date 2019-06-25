@@ -1,18 +1,14 @@
 package com.cinguetter.model;
 
-import java.util.GregorianCalendar;
-
 public abstract class PostedMessage {
 
 	private String text;
-	private String userEmail;
-	private GregorianCalendar postTime;
+	private String userId;
 	private int id;
 
-	public PostedMessage(String text, String userEmail, GregorianCalendar postTime, int id) {
+	public PostedMessage(String text, String userId, int id) {
 		this.text = text;
-		this.userEmail = userEmail;
-		this.postTime = postTime;
+		this.userId = userId;
 		this.id = id;
 	}
 
@@ -20,12 +16,8 @@ public abstract class PostedMessage {
 		return text;
 	}
 
-	public String getUserEmail() {
-		return userEmail;
-	}
-
-	public GregorianCalendar getPostTime() {
-		return postTime;
+	public String getUserId() {
+		return userId;
 	}
 
 	public int getId() {
