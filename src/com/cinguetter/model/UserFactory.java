@@ -9,6 +9,11 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -146,7 +151,7 @@ public class UserFactory {
 			return birthday;
 		} catch (ParseException e) {
 			e.printStackTrace();
-			System.out.println("La mamma egua del formatter sta facendo cose sbagliate, errore in userBithdayManager");
+			System.out.println("Il formatter sta facendo cose sbagliate, errore in userBithdayManager");
 		}
 		return null;
 	}
@@ -193,4 +198,44 @@ public class UserFactory {
 		}
 		return false;
 	}
+	
+	public Map<Integer, User> getUsersMap(List<PostedMessage> postedMessages){
+		
+		Map<Integer, User> usersMap = new HashMap<Integer, User>();
+		
+		Set<Integer> usersId = new HashSet<Integer>();
+		
+		// Aggiungiamo al set gli user id senza replicarli
+		for(PostedMessage message : postedMessages) {
+			usersId.add(message.getUserId());
+		}
+		
+		String sql = "select id, name, surname, urlimageprofile from users where id in(";
+		
+		for(Integer userId: usersId) {
+			sql += userId + ",";
+		}
+		
+		sql = sql.substring(0, sql.length()-1);
+		sql += ");";
+		
+		try (Connection conn = DbManager.getInstance().getDbConnection(); Statement stmt = conn.createStatement())  {
+
+			ResultSet result = stmt.executeQuery(sql);
+
+			while (result.next()) {
+				usersMap.put(result.getInt("id"), new User(result.getString("name"), result.getString("surname"), result.getString("urlimageprofile")));
+			}
+
+			return usersMap;
+					
+		} catch (SQLException e) {
+			Logger.getLogger(UserFactory.class.getName()).log(Level.SEVERE, null, e);
+			System.out.println("errore in getUsersMap dentro UserFactory");
+		}	
+		
+		return null;
+	}
+	
+	
 }

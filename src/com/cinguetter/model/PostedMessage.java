@@ -3,10 +3,10 @@ package com.cinguetter.model;
 public abstract class PostedMessage {
 
 	private String text;
-	private String userId;
+	private int userId;
 	private int id;
 
-	public PostedMessage(String text, String userId, int id) {
+	public PostedMessage(int id, String text, int userId) {
 		this.text = text;
 		this.userId = userId;
 		this.id = id;
@@ -16,7 +16,7 @@ public abstract class PostedMessage {
 		return text;
 	}
 
-	public String getUserId() {
+	public int getUserId() {
 		return userId;
 	}
 

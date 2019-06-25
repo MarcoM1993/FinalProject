@@ -1,6 +1,14 @@
 package com.cinguetter.model;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class CinguettFactory {
 	
@@ -22,6 +30,25 @@ public class CinguettFactory {
 	}
 
 	public List<Cinguett> getCinguetts(int numberOfCinguetts) {
+		
+		List<Cinguett> cinguetts = new ArrayList<Cinguett>();
+		
+		try (Connection conn = DbManager.getInstance().getDbConnection(); Statement stmt = conn.createStatement())  {
+
+			String sql = "select id, text, user_id from cinguetts where ROWNUM <= "+ numberOfCinguetts +"ORDER BY c.post_time DESC;";
+
+			ResultSet result = stmt.executeQuery(sql);
+
+			while (result.next()) {
+				cinguetts.add(new Cinguett(result.getInt("id"), result.getString("text"), result.getInt("user_id")));
+			}
+
+			return cinguetts;
+					
+		} catch (SQLException e) {
+			Logger.getLogger(UserFactory.class.getName()).log(Level.SEVERE, null, e);
+			System.out.println("errore in getCinguetts dentro CinguettsFactory");
+		}	
 		
 		return null;
 	}
