@@ -84,11 +84,10 @@ public class UserManager extends HttpServlet {
 
 			// Aggiorno i dettagli utente 
 			// Se la modifica non va a buon fine
-			String resultOfEdit=UserFactory.getInstance().editDetails(newName, newSurname, newEmail, newPassword, newUrlImageProfile,
-					newBirthday, email);
-			if (resultOfEdit.equals("Error, changes not applied, data entry verification") || resultOfEdit.equals("Email is not avaible")) {
+			if (!UserFactory.getInstance().editDetails(newName, newSurname, newEmail, newPassword, newUrlImageProfile,
+					newBirthday, email)) {
 				// Mando l'errore al jsp
-				session.setAttribute("error", resultOfEdit);
+				session.setAttribute("error", "Email is not avaible");
 				response.sendRedirect("usermanager.html");
 				//request.getRequestDispatcher("WEB-INF/JSP/user_data.jsp").forward(request, response);
 			} else {
