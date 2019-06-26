@@ -41,6 +41,12 @@
 		 					${error}
 		 				</div>
 		 				</c:if>
+		 				
+		 				<c:if test="${not empty success}">
+		 				<div  class="alert alert-success" role="alert">
+		 					${success}
+		 				</div>
+		 				</c:if>
 		 			<h1>My Profile</h1>
 		 			
 					<form action="usermanager.html" method="post">
@@ -55,11 +61,11 @@
 				  		</div>
 					    <div>
 				  		<label for="email">Email</label>
-					  	<input type="email" class="form-control mb-4" id="email" name="email"  required pattern="^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$" <c:if test= "${not empty user}">value="${user.email}"</c:if>/> 
+					  	<input type="email" class="form-control mb-4" id="email" name="email"  pattern="^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$" <c:if test= "${not empty user}">value="${user.email}"</c:if>/> 
 					  	</div>
 					    <div>
 					  	<label for="password">Password</label>
-					  	<input type="password" class="form-control mb-4" id="password" name="password" <c:if test= "${not empty user}"required"</c:if>/>
+					  	<input type="password" class="form-control mb-4" id="password" name="password" />
 					  	</div>
 					    <div>
 					  	<label for="urlImageProfile">URL Image Profile</label>
