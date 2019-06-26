@@ -38,19 +38,21 @@
 			
 		
 		<div class="cinguett border border-light p-5 rounded">
-			<div id="user_info">
-			    <img src="${userMap.get(cinguett.userId).urlImageProfile}"> 
+			<div id="user_info" class="p-2">
+			    <img id="cinguett_user_image" src="${userMap.get(cinguett.userId).urlImageProfile}" height="50px" class="rounded-circle"> 
 				<label id="label_user_name"> ${userMap.get(cinguett.userId).name} ${userMap.get(cinguett.userId).surname} </label>
 			</div>
-			<div id="cinguett_text">
+			<div id="cinguett_text" class="border border-light p-1 rounded">
 				<p> ${cinguett.text} </p>
 			</div>
-			<div id="comments">
-				<h6>Comments:</h6>
-					
+	
+				<p>Comments:</p>
+			<div id="comments" class="cinguett border border-light p-1 rounded">
 						<c:forEach var="comment" items="${commentsMap.get(cinguett.id)}">
 							<div>
-								<img src="${userMap.get(comment.userId).urlImageProfile}"> 
+								<img id="comment_user_image" src="${userMap.get(comment.userId).urlImageProfile}" height="40px" class="rounded-circle"> 
+								<label id="label_comment_user_name"> ${userMap.get(comment.userId).name} ${userMap.get(comment.userId).surname} </label>
+								
 								<p> ${comment.text}</p>
 							</div>
 						</c:forEach>
