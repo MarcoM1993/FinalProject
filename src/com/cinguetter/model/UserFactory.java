@@ -133,7 +133,11 @@ public class UserFactory {
 			while (result.next()) {
 				String name = result.getString("name");
 				String surname = result.getString("surname");
-				String urlImageProfile = result.getString("urlImageProfile");
+				String urlImageProfile="";
+				if (result.getString("urlImageProfile").equals("view/Resources/default.png")){
+				 urlImageProfile = result.getString("urlImageProfile");
+				}
+				
 				GregorianCalendar birthday = userBirthdayManager(result.getString("birthday"));
 				User user = new User(name, surname, email, urlImageProfile, birthday);
 				return user;

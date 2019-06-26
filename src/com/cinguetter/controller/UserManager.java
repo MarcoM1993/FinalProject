@@ -73,6 +73,9 @@ public class UserManager extends HttpServlet {
 		String newEmail = request.getParameter("email");
 		String newPassword = request.getParameter("password");
 		String newUrlImageProfile = request.getParameter("urlImageProfile");
+		if (newUrlImageProfile.equals("")) {
+			newUrlImageProfile="view/Resources/default.png";
+		}
 		String newBirthday = request.getParameter("birthday");
 	
 
