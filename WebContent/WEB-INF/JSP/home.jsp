@@ -26,7 +26,7 @@
 		<%-- Aggiungere la funzionalità responsive con bootstrap: vedi login --%>
 		
 		
-		<div id="form" class="border border-light p-5 rounded">
+		<div id="form" class="shadow-lg border border-light p-5 rounded">
 			<form action="home.html" method="post" style="display:inline">
 				<h3 id="label_add_text" for="cinguett_text">Add Cinguett:</h3>
 				<textarea name="cinguett_text" rows="4" cols="50" class="form-control mb-4" maxlength="150" style="resize:none"></textarea>   <%-- Regola CSS: resize: none; --%>
@@ -37,12 +37,12 @@
 			<c:forEach var="cinguett" items="${cinguettList}">  <%-- --%>
 			
 		
-		<div class="cinguett border border-light p-5 rounded">
+		<div class="shadow cinguett border  p-5 rounded">
 			<div id="user_info" class="p-2">
 			    <img id="cinguett_user_image" src="${userMap.get(cinguett.userId).urlImageProfile}" height="50px" class="rounded-circle bg-white align-bottom p-1 border border-dark"> 
 				<label id="label_user_name" class="cinguett_text"> ${userMap.get(cinguett.userId).name} ${userMap.get(cinguett.userId).surname} </label>
 			</div>
-			<div class="border border-light p-1 rounded cinguett_text cinguett-back">
+			<div class="border border-light p-1 rounded cinguett-text cinguett-back">
 				<p> ${cinguett.text} </p>
 			</div>
 				<c:if test="${not empty commentsMap.get(cinguett.id)}">
@@ -53,7 +53,7 @@
 								<img id="comment_user_image" src="${userMap.get(comment.userId).urlImageProfile}" height="40px" class="rounded-circle bg-white align-bottom p-1 border border-dark m-1"> 
 								<label id="label_comment_user_name"> ${userMap.get(comment.userId).name} ${userMap.get(comment.userId).surname} </label>
 								
-								<div id="comment_text" class="border border-light p-1 rounded">
+								<div id="comment_text" class="border border-light p-1 rounded comment-back">
 									<p> ${comment.text}</p>
 								</div>
 							</div>

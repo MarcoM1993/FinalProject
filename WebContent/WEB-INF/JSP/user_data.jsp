@@ -35,7 +35,7 @@
 			<div class="col-lg-6 col-md-6 col-sm-6">
 			
 			
-				<div id="form" class="border border-light p-5 rounded">
+				<div id="form" class="shadow-lg border border-light p-5 rounded">
 					<c:if test="${not empty error}">
 		 				<div  class="alert alert-danger" role="alert">
 		 					${error}
