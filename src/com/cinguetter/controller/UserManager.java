@@ -41,6 +41,7 @@ public class UserManager extends HttpServlet {
 		String error = (String) session.getAttribute("error");
 		session.removeAttribute("error");
 		
+		
 		if (email != null && password != null && !email.isEmpty() && !password.isEmpty()
 				&& UserFactory.getInstance().login(email, password) == true) {
 			User user = UserFactory.getInstance().getUser(email);
