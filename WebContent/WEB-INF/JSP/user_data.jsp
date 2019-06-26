@@ -34,22 +34,28 @@
 			
 			<div class="col-lg-6 col-md-6 col-sm-6">
 			
+			
 				<div id="form" class="border border-light p-5 rounded">
+					<c:if test="${not empty error}">
+		 				<div  class="alert alert-danger" role="alert">
+		 					${error}
+		 				</div>
+		 				</c:if>
 		 			<h1>My Profile</h1>
 		 			
 					<form action="usermanager.html" method="post">
 					
 						<div>
 					  	<label for="name">Name</label>
-					  	<input type="text" class="form-control mb-4" id="name" name="name" <c:if test= "${not empty user}">value="${user.name}"</c:if>/>
+					  	<input type="text" class="form-control mb-4" id="name" name="name" required <c:if test= "${not empty user}">value="${user.name}"</c:if>/>
 					    </div>
 					    <div>
 					    <label for="surname">Surname</label>
-				  		<input type="text" class="form-control mb-4" id="surname" name="surname" <c:if test= "${not empty user}">value="${user.surname}"</c:if>/> 
+				  		<input type="text" class="form-control mb-4" id="surname" name="surname" required <c:if test= "${not empty user}">value="${user.surname}"</c:if>/> 
 				  		</div>
 					    <div>
 				  		<label for="email">Email</label>
-					  	<input type="email" class="form-control mb-4" id="email" name="email" <c:if test= "${not empty user}">value="${user.email}"</c:if>/> 
+					  	<input type="email" class="form-control mb-4" id="email" name="email"  pattern="^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$" <c:if test= "${not empty user}">value="${user.email}"</c:if>/> 
 					  	</div>
 					    <div>
 					  	<label for="password">Password</label>
@@ -61,14 +67,10 @@
 					  	</div>
 					    <div>
 					  	<label for="birthday">Birthday</label>
-					  	<input type="date" class="form-control mb-4" id="birthday" name="birthday" <c:if test= "${not empty user}">value="${user.birthdayString}"</c:if>/> 
+					  	<input type="date" class="form-control mb-4" id="birthday" name="birthday" required <c:if test= "${not empty user}">value="${user.birthdayString}"</c:if>/> 
 						</div>
 					
-			 			<c:if test="${not empty error}">
-		 				<div  class="alert alert-danger" role="alert">
-		 					${error}
-		 				</div>
-		 				</c:if>
+			 		
 					
 						<button type="submit" class="rounded btn-sample btn-block btn-lg"><c:choose><c:when test="${not empty user}">Modify</c:when><c:otherwise>Register</c:otherwise></c:choose></button>
 					

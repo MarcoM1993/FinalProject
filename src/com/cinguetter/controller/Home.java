@@ -62,10 +62,10 @@ public class Home extends HttpServlet {
 		String cinguettText = request.getParameter("cinguett_text");
 		String commentText = request.getParameter("comment_text");
 		
-		if(cinguettText != null) {
+		if(cinguettText != null && cinguettText.length()<=150) {
 			CinguettFactory.getInstance().addCinguett(cinguettText, (String) session.getAttribute("email"));
 			
-		} else if(commentText != null) {
+		} else if(commentText != null && commentText.length()<=150) {
 			CommentFactory.getInstance().addComment(commentText, Integer.parseInt(request.getParameter("cinguettId")) , (String) session.getAttribute("email"));
 		}
 		doGet(request, response);
