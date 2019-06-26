@@ -32,6 +32,11 @@
 		 					${error}
 		 				</div>
 		 			</c:if>
+	 				<c:if test="${not empty success}">
+		 				<div  class="alert alert-success" role="alert">
+		 					${success}
+		 				</div>
+ 					</c:if>
 		 			
 					<form action="index.html" method="post"style="display:inline">
 					<div>

@@ -42,12 +42,12 @@
 			    <img id="cinguett_user_image" src="${userMap.get(cinguett.userId).urlImageProfile}" height="50px" class="rounded-circle bg-white align-bottom p-1 border border-dark"> 
 				<label id="label_user_name" class="cinguett_text"> ${userMap.get(cinguett.userId).name} ${userMap.get(cinguett.userId).surname} </label>
 			</div>
-			<div class="border border-light p-1 rounded cinguett_text">
+			<div class="border border-light p-1 rounded cinguett_text cinguett-back">
 				<p> ${cinguett.text} </p>
 			</div>
 				<c:if test="${not empty commentsMap.get(cinguett.id)}">
-				<p class="pt-2">Comments:</p>
-				<div id="comments" class="cinguett border border-light p-1 rounded">
+				<p class="pt-3 ml-4 ">Comments:</p>
+				<div id="comments" class="comment border border-light p-1 rounded">
 						<c:forEach var="comment" items="${commentsMap.get(cinguett.id)}">
 							<div class="p-2">
 								<img id="comment_user_image" src="${userMap.get(comment.userId).urlImageProfile}" height="40px" class="rounded-circle bg-white align-bottom p-1 border border-dark m-1"> 
@@ -64,7 +64,7 @@
 	        	<label id="label_add_comment" for="comment_text">Add comment:</label>
 	        	<input type="hidden" name="cinguettId" value="${cinguett.id}"/>
 				<textarea name="comment_text" rows="2" cols="30" class="form-control mb-4" maxlength="150" style="resize:none"></textarea>
-				<button type="submit" class="rounded btn-sample sign comment">Send</button>	
+				<button type="submit" class="rounded btn-sample sign comment-button">Send</button>	
 			</form>
 		</div>
 		</c:forEach>

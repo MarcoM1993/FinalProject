@@ -41,6 +41,12 @@
 		 					${error}
 		 				</div>
 		 				</c:if>
+		 				
+		 				<c:if test="${not empty success}">
+		 				<div  class="alert alert-success" role="alert">
+		 					${success}
+		 				</div>
+		 				</c:if>
 		 			<h1>My Profile</h1>
 		 			
 					<form action="usermanager.html" method="post">

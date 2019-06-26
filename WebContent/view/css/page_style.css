@@ -10,12 +10,20 @@
 	background-color:#ecbf72;
 }
 
+.comment{
+	margin: 20px;
+	background-color:#f78335;
+}
+
+.cinguett-back{
+	background-color: #fccd7b;
+}
 
 .cinguett_text{
 	font-size: 20px;
 }
 
-.comment{
+.comment-button{
 	float:right;
 }
 

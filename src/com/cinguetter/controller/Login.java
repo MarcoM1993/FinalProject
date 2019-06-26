@@ -36,12 +36,18 @@ public class Login extends HttpServlet {
 		
 		if(session == null || session.getAttribute("email") == null || session.getAttribute("password") == null) {
 			
+			if(session != null && session.getAttribute("success") != null) {
+				String success = (String) session.getAttribute("success");
+				session.removeAttribute("success");
+				request.setAttribute("success", success);
+			}
 			request.getRequestDispatcher("WEB-INF/JSP/login.jsp").forward(request, response);
 			
 		}else {
 			
 			String email = (String) session.getAttribute("email");
 			String password = (String) session.getAttribute("password");
+			session.removeAttribute("success");
 			
 			if (email!= null && password != null && 
 				!email.isEmpty() && !password.isEmpty() && 
@@ -55,6 +61,7 @@ public class Login extends HttpServlet {
 				}
 			}
 		}
+		
 	}
 
 	/**
@@ -76,7 +83,6 @@ public class Login extends HttpServlet {
 			response.sendRedirect("home.html");
 
 		} else {
-
 			request.setAttribute("error", "Wrong credentials");
 			request.setAttribute("logged", false);
 			request.getRequestDispatcher("WEB-INF/JSP/login.jsp").forward(request, response);

@@ -41,12 +41,16 @@ public class UserManager extends HttpServlet {
 		String error = (String) session.getAttribute("error");
 		session.removeAttribute("error");
 		
+		String success = (String) session.getAttribute("success");
+		session.removeAttribute("success");
+		
 		
 		if (email != null && password != null && !email.isEmpty() && !password.isEmpty()
 				&& UserFactory.getInstance().login(email, password) == true) {
 			User user = UserFactory.getInstance().getUser(email);
 			request.setAttribute("user", user);
 			request.setAttribute("error", error);
+			request.setAttribute("success", success);
 		}
 		request.getRequestDispatcher("WEB-INF/JSP/user_data.jsp").forward(request, response);
 	}
@@ -100,6 +104,9 @@ public class UserManager extends HttpServlet {
 				session.setAttribute("email", newEmail);
 				session.setAttribute("password", newPassword);
 				
+				session.setAttribute("success", "User details changed successfully!");
+
+				
 				response.sendRedirect("usermanager.html");
 			}
 		}else {
@@ -117,6 +124,8 @@ public class UserManager extends HttpServlet {
 				//request.getRequestDispatcher("WEB-INF/JSP/user_data.jsp").forward(request, response);
 			}else{
 				// La registrazione e andata a buon fine e lo mando al login
+				
+				session.setAttribute("success", "User registration successful!");
 				response.sendRedirect("index.html");
 			}
 		}
