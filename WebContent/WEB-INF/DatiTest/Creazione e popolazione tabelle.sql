@@ -41,22 +41,22 @@ insert into users values(4,'Federico', 'Spiga','federico@gmail.com', 'password',
 
 
 insert into cinguetts values(0, 'Sciao sono Marco er mejo der colosseo', 0, TO_DATE('2019-05-15 8:30:25', 'YYYY-MM-DD HH24:MI:SS')); 
-insert into cinguetts values(1, 'Ciao sono Skere', 2, TO_DATE('2018-05-15 8:30:25', 'YYYY-MM-DD HH24:MI:SS')); 
+insert into cinguetts values(1, 'Ciao sono eskere', 2, TO_DATE('2018-05-15 8:30:25', 'YYYY-MM-DD HH24:MI:SS')); 
 insert into cinguetts values(2, 'Buongiornissimo vado in pasticceria', 1, TO_DATE('2019-04-15 8:30:25', 'YYYY-MM-DD HH24:MI:SS')); 
 insert into cinguetts values(3, 'Ho voglia di gelato', 4, TO_DATE('2019-05-16 8:30:25', 'YYYY-MM-DD HH24:MI:SS')); 
-insert into cinguetts values(4, 'Mi piace la birillica fritta', 3, TO_DATE('2019-05-15 8:30:20', 'YYYY-MM-DD HH24:MI:SS')); 
+insert into cinguetts values(4, 'Ho voglia di fritto', 3, TO_DATE('2019-05-15 8:30:20', 'YYYY-MM-DD HH24:MI:SS')); 
 insert into cinguetts values(5, 'Samu tvb.... veroooo!!!', 2, TO_DATE('2019-05-15 9:30:10', 'YYYY-MM-DD HH24:MI:SS')); 
 insert into cinguetts values(6, 'Cinguetter the best 4EVER', 1, TO_DATE('2019-05-15 5:30:25', 'YYYY-MM-DD HH24:MI:SS')); 
-insert into cinguetts values(7, 'Che martei brutto', 1, TO_DATE('2019-05-15 16:30:25', 'YYYY-MM-DD HH24:MI:SS')); 
+insert into cinguetts values(7, 'Che bella giornata', 1, TO_DATE('2019-05-15 16:30:25', 'YYYY-MM-DD HH24:MI:SS')); 
 insert into cinguetts values(8, 'I love sushi', 2, TO_DATE('2019-05-15 18:30:25', 'YYYY-MM-DD HH24:MI:SS')); 
-insert into cinguetts values(9, 'sushimpru', 4, TO_DATE('2019-05-15 20:30:25', 'YYYY-MM-DD HH24:MI:SS')); 
-insert into cinguetts values(10, 'Team', 2, TO_DATE('2019-05-15 14:30:25', 'YYYY-MM-DD HH24:MI:SS')); 
+insert into cinguetts values(9, 'I love cinghialetto con pizzae asparagusu', 4, TO_DATE('2019-05-15 20:30:25', 'YYYY-MM-DD HH24:MI:SS')); 
+insert into cinguetts values(10, 'Team cinglett', 2, TO_DATE('2019-05-15 14:30:25', 'YYYY-MM-DD HH24:MI:SS')); 
 insert into cinguetts values(11, 'Enjoy Java', 3, TO_DATE('2019-05-15 15:30:25', 'YYYY-MM-DD HH24:MI:SS')); 
 
 
 insert into comments values(0, 'Bravo bro sesi su mellusu', TO_DATE('2019-06-25 8:30:25', 'YYYY-MM-DD HH24:MI:SS'), 0, 2 ); 
 insert into comments values(1, 'Buuuu!?!?!? sono il fantasma formaggino', TO_DATE('2019-06-25 8:40:25', 'YYYY-MM-DD HH24:MI:SS'), 1, 2 ); 
-insert into comments values(2, 'Viva la F.... la Felicita cosa avete capito ;)', TO_DATE('2019-06-25 8:35:25', 'YYYY-MM-DD HH24:MI:SS'), 4, 4 ); 
+insert into comments values(2, 'Viva la pioggia)', TO_DATE('2019-06-25 8:35:25', 'YYYY-MM-DD HH24:MI:SS'), 4, 4 ); 
 insert into comments values(3, 'Anche a me', TO_DATE('2019-06-25 8:32:25', 'YYYY-MM-DD HH24:MI:SS'), 3, 0 ); 
 insert into comments values(4, 'Tvb anche io', TO_DATE('2019-06-25 8:37:25', 'YYYY-MM-DD HH24:MI:SS'), 3, 0 );
-insert into comments values(5, 'Mi mancano le skittless', TO_DATE('2019-06-25 8:36:15', 'YYYY-MM-DD HH24:MI:SS'), 3, 3 );
+insert into comments values(5, 'Sono Samu: Mi mancano le competenze in Java', TO_DATE('2019-06-25 8:36:15', 'YYYY-MM-DD HH24:MI:SS'), 3, 3 );
