@@ -38,11 +38,14 @@ public class UserManager extends HttpServlet {
 		String email = (String) session.getAttribute("email");
 		String password = (String) session.getAttribute("password");
 		
+		String error = (String) session.getAttribute("error");
+		session.removeAttribute("error");
+		
 		if (email != null && password != null && !email.isEmpty() && !password.isEmpty()
 				&& UserFactory.getInstance().login(email, password) == true) {
 			User user = UserFactory.getInstance().getUser(email);
 			request.setAttribute("user", user);
-
+			request.setAttribute("error", error);
 		}
 		request.getRequestDispatcher("WEB-INF/JSP/user_data.jsp").forward(request, response);
 	}
@@ -84,8 +87,9 @@ public class UserManager extends HttpServlet {
 					newBirthday, email);
 			if (resultOfEdit.equals("Error, changes not applied, data entry verification") || resultOfEdit.equals("Email is not avaible")) {
 				// Mando l'errore al jsp
-				request.setAttribute("error", resultOfEdit);
-				request.getRequestDispatcher("WEB-INF/JSP/user_data.jsp").forward(request, response);
+				session.setAttribute("error", resultOfEdit);
+				response.sendRedirect("usermanager.html");
+				//request.getRequestDispatcher("WEB-INF/JSP/user_data.jsp").forward(request, response);
 			} else {
 				
 				// Modifche a buon fine: reimposto email e password nella sessione
@@ -104,8 +108,12 @@ public class UserManager extends HttpServlet {
 			if(UserFactory.getInstance().addUser(newName, newSurname, newEmail, newPassword, newUrlImageProfile, newBirthday) == false) {
 				
 				// Mando l'errore al jsp
-				request.setAttribute("error", "User registration failed");
-				request.getRequestDispatcher("WEB-INF/JSP/user_data.jsp").forward(request, response);
+				
+				session.setAttribute("error", "User registration failed: email exists");
+				response.sendRedirect("usermanager.html");
+				
+				//request.setAttribute("error", "User registration failed");
+				//request.getRequestDispatcher("WEB-INF/JSP/user_data.jsp").forward(request, response);
 			}else{
 				// La registrazione e andata a buon fine e lo mando al login
 				response.sendRedirect("index.html");

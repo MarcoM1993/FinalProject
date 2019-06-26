@@ -68,7 +68,7 @@ public class Home extends HttpServlet {
 		} else if(commentText != null && commentText.length()<=150) {
 			CommentFactory.getInstance().addComment(commentText, Integer.parseInt(request.getParameter("cinguettId")) , (String) session.getAttribute("email"));
 		}
-		doGet(request, response);
+		response.sendRedirect("home.html");
 	}
 
 }
