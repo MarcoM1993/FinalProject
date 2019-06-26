@@ -29,7 +29,7 @@
 		<div id="form" class="border border-light p-5 rounded">
 			<form action="home.html" method="post" style="display:inline">
 				<h3 id="label_add_text" for="cinguett_text">Add Cinguett:</h3>
-				<textarea name="cinguett_text" rows="4" cols="50" class="form-control mb-4"></textarea>   <%-- Regola CSS: resize: none; --%>
+				<textarea name="cinguett_text" rows="4" cols="50" class="form-control mb-4" maxlength="150"></textarea>   <%-- Regola CSS: resize: none; --%>
 				<button type="submit" class="rounded btn-sample sign">Post</button>
 			</form>
 		</div>
@@ -58,7 +58,7 @@
 	        <form action="home.html" method="post">
 	        	<label id="label_add_comment" for="comment_text">Add comment:</label>
 	        	<input type="hidden" name="cinguettId" value="${cinguett.id}"/>
-				<textarea name="comment_text" rows="2" cols="30" class="form-control mb-4"></textarea>
+				<textarea name="comment_text" rows="2" cols="30" class="form-control mb-4" maxlength="150"></textarea>
 				<button type="submit" class="rounded btn-sample sign comment">Send</button>	
 			</form>
 		</div>

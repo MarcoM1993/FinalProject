@@ -37,11 +37,11 @@ public class UserManager extends HttpServlet {
 
 		String email = (String) session.getAttribute("email");
 		String password = (String) session.getAttribute("password");
-
+		
 		if (email != null && password != null && !email.isEmpty() && !password.isEmpty()
 				&& UserFactory.getInstance().login(email, password) == true) {
-			User other = UserFactory.getInstance().getUser(email);
-			request.setAttribute("user", other);
+			User user = UserFactory.getInstance().getUser(email);
+			request.setAttribute("user", user);
 
 		}
 		request.getRequestDispatcher("WEB-INF/JSP/user_data.jsp").forward(request, response);
@@ -66,12 +66,13 @@ public class UserManager extends HttpServlet {
 		String newPassword = request.getParameter("password");
 		String newUrlImageProfile = request.getParameter("urlImageProfile");
 		String newBirthday = request.getParameter("birthday");
-
+	
 
 		// Se l'utente � loggato
 		if (email != null && password != null && !email.isEmpty() && !password.isEmpty()
 				&& UserFactory.getInstance().login(email, password) == true) {
 			
+
 			// Se la password non � stata inserita recupero la vecchia dalla sessione
 			if (newPassword == null || newPassword.isEmpty()) {
 				newPassword = password;
