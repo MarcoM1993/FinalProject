@@ -134,7 +134,7 @@ public class UserFactory {
 				String name = result.getString("name");
 				String surname = result.getString("surname");
 				String urlImageProfile="";
-				if (result.getString("urlImageProfile").equals("view/Resources/default.png")){
+				if (!result.getString("urlImageProfile").equals("view/Resources/default.png")){
 				 urlImageProfile = result.getString("urlImageProfile");
 				}
 				
