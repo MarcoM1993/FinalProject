@@ -10,12 +10,9 @@
 	background-color:#ecbf72;
 }
 
-#cinguett_user_image{
-	vertical-align: bottom;
-	border-color: black;
-	border-style: solid;
-	border-width: 1px;
-	padding: 4px;
+
+.cinguett_text{
+	font-size: 20px;
 }
 
 .comment{
@@ -26,8 +23,4 @@
 	width:120px;
 	height:40px;
 	margin-right: 40px;
-}
-
-textarea{
-	resize: none;
 }

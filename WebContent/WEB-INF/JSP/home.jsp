@@ -29,7 +29,7 @@
 		<div id="form" class="border border-light p-5 rounded">
 			<form action="home.html" method="post" style="display:inline">
 				<h3 id="label_add_text" for="cinguett_text">Add Cinguett:</h3>
-				<textarea name="cinguett_text" rows="4" cols="50" class="form-control mb-4" maxlength="150"></textarea>   <%-- Regola CSS: resize: none; --%>
+				<textarea name="cinguett_text" rows="4" cols="50" class="form-control mb-4" maxlength="150" style="resize:none"></textarea>   <%-- Regola CSS: resize: none; --%>
 				<button type="submit" class="rounded btn-sample sign">Post</button>
 			</form>
 		</div>
@@ -39,28 +39,31 @@
 		
 		<div class="cinguett border border-light p-5 rounded">
 			<div id="user_info" class="p-2">
-			    <img id="cinguett_user_image" src="${userMap.get(cinguett.userId).urlImageProfile}" height="50px" class="rounded-circle"> 
-				<label id="label_user_name"> ${userMap.get(cinguett.userId).name} ${userMap.get(cinguett.userId).surname} </label>
+			    <img id="cinguett_user_image" src="${userMap.get(cinguett.userId).urlImageProfile}" height="50px" class="rounded-circle bg-white align-bottom p-1 border border-dark"> 
+				<label id="label_user_name" class="cinguett_text"> ${userMap.get(cinguett.userId).name} ${userMap.get(cinguett.userId).surname} </label>
 			</div>
-			<div id="cinguett_text" class="border border-light p-1 rounded">
+			<div class="border border-light p-1 rounded cinguett_text">
 				<p> ${cinguett.text} </p>
 			</div>
-	
-				<p>Comments:</p>
-			<div id="comments" class="cinguett border border-light p-1 rounded">
+				<c:if test="${not empty commentsMap.get(cinguett.id)}">
+				<p class="pt-2">Comments:</p>
+				<div id="comments" class="cinguett border border-light p-1 rounded">
 						<c:forEach var="comment" items="${commentsMap.get(cinguett.id)}">
-							<div>
-								<img id="comment_user_image" src="${userMap.get(comment.userId).urlImageProfile}" height="40px" class="rounded-circle"> 
+							<div class="p-2">
+								<img id="comment_user_image" src="${userMap.get(comment.userId).urlImageProfile}" height="40px" class="rounded-circle bg-white align-bottom p-1 border border-dark m-1"> 
 								<label id="label_comment_user_name"> ${userMap.get(comment.userId).name} ${userMap.get(comment.userId).surname} </label>
 								
-								<p> ${comment.text}</p>
+								<div id="comment_text" class="border border-light p-1 rounded">
+									<p> ${comment.text}</p>
+								</div>
 							</div>
 						</c:forEach>
-			</div>
+				</div>
+				</c:if>
 	        <form action="home.html" method="post">
 	        	<label id="label_add_comment" for="comment_text">Add comment:</label>
 	        	<input type="hidden" name="cinguettId" value="${cinguett.id}"/>
-				<textarea name="comment_text" rows="2" cols="30" class="form-control mb-4" maxlength="150"></textarea>
+				<textarea name="comment_text" rows="2" cols="30" class="form-control mb-4" maxlength="150" style="resize:none"></textarea>
 				<button type="submit" class="rounded btn-sample sign comment">Send</button>	
 			</form>
 		</div>
