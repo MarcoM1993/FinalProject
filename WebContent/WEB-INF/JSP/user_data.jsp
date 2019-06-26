@@ -55,11 +55,11 @@
 				  		</div>
 					    <div>
 				  		<label for="email">Email</label>
-					  	<input type="email" class="form-control mb-4" id="email" name="email"  pattern="^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$" <c:if test= "${not empty user}">value="${user.email}"</c:if>/> 
+					  	<input type="email" class="form-control mb-4" id="email" name="email"  required pattern="^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$" <c:if test= "${not empty user}">value="${user.email}"</c:if>/> 
 					  	</div>
 					    <div>
 					  	<label for="password">Password</label>
-					  	<input type="password" class="form-control mb-4" id="password" name="password" />
+					  	<input type="password" class="form-control mb-4" id="password" name="password" <c:if test= "${not empty user}"required"</c:if>/>
 					  	</div>
 					    <div>
 					  	<label for="urlImageProfile">URL Image Profile</label>
