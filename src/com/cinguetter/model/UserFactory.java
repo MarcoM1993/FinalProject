@@ -58,7 +58,7 @@ public class UserFactory {
 		return false;
 	}
 
-	public String editDetails(String newName, String newSurname, String newEmail, String newPassword,
+	public boolean editDetails(String newName, String newSurname, String newEmail, String newPassword,
 			String newUrlImageProfile, String newBirthday, String email) {
 		try (Connection conn = DbManager.getInstance().getDbConnection()) {
 			conn.setAutoCommit(false); //Iniza la transazione perch� se due persone entrano in concorrenza in questo metodo potrebbero superare il successivo controllo e impostare assieme la stessa mail
@@ -71,7 +71,7 @@ public class UserFactory {
 					stmt.setString(1, newEmail);
 					ResultSet result = stmt.executeQuery();
 					if (result.next()) {
-						return "Email is not avaible"; //se trova risultati la mail esiste quindi interrompo l'esecuzione la modifica non si pu� fare
+						return false; //se trova risultati la mail esiste quindi interrompo l'esecuzione la modifica non si pu� fare
 					}
 					
 
@@ -109,7 +109,7 @@ public class UserFactory {
 				stmt.setInt(7, idUser);
 				stmt.executeUpdate();
 				conn.commit(); //committo le modifiche, tutto � andato a buon fine
-				return "successfully modified";//operazione conclusa con successo
+				return true;//operazione conclusa con successo
 			} catch (SQLException e) {
 				conn.rollback();//elimino le modifiche effettuate in transazione
 				Logger.getLogger(UserFactory.class.getName()).log(Level.SEVERE, null, e);
@@ -119,7 +119,7 @@ public class UserFactory {
 			Logger.getLogger(UserFactory.class.getName()).log(Level.SEVERE, null, e);
 			System.out.println("Errore in editDetails 110");
 		}
-		return "Error, changes not applied, data entry verification"; // se sono arrivato a questo punto qualche metodo ha lanciato un'eccezione
+		return false; // se sono arrivato a questo punto qualche metodo ha lanciato un'eccezione
 	}
 
 	public User getUser(String email) {
