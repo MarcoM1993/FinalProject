@@ -65,7 +65,7 @@ public class CommentFactory {
 		List<Comment> comments = new ArrayList<Comment>();
 		
 		try (Connection conn = DbManager.getInstance().getDbConnection(); Statement stmt = conn.createStatement())  {
-			String sql = "select id, text, user_id, cinguett_id from comments where cinguett_id = "+cinguettId+ " ORDER BY post_time DESC";
+			String sql = "select id, text, user_id, cinguett_id from comments where cinguett_id = "+cinguettId+ " ORDER BY post_time asc";
 
 			ResultSet result = stmt.executeQuery(sql);
 
